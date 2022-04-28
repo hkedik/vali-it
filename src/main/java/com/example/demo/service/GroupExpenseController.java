@@ -3,6 +3,7 @@ package com.example.demo.service;
 
 import com.example.demo.domain.contact.ContactService;
 import com.example.demo.domain.group_info.GroupInfoRequest;
+import com.example.demo.domain.student.NewStudentRequest;
 import com.example.demo.domain.user.NewUserInfoRequest;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.*;
@@ -16,8 +17,7 @@ public class GroupExpenseController {
     @Resource
     private GroupExpenseService groupExpenseService;
 
-    @Resource
-    private ContactService contactService;
+
 
     @PostMapping("/new-user")
     @Operation(summary = "Add new user")
@@ -25,7 +25,6 @@ public class GroupExpenseController {
         groupExpenseService.addNewUser(newUserInfoRequest);
         System.out.println("sergei");
     }
-
 
 
     @PostMapping("/new-group")
@@ -40,6 +39,10 @@ public class GroupExpenseController {
         return groupExpenseService.logIn(userName, password);
     }
 
-
+    @PostMapping("/new-student")
+    @Operation(summary = "Add new student")
+    public void addNewStudent(@RequestBody NewStudentRequest request ) {
+        groupExpenseService.addNewStudent(request);
+    }
 }
 
