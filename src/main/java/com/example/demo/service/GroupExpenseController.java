@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 
 import com.example.demo.domain.contact.ContactService;
+import com.example.demo.domain.group_info.GroupInfoRequest;
 import com.example.demo.domain.user.NewUserInfoRequest;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.*;
@@ -27,7 +28,18 @@ public class GroupExpenseController {
 
 
 
-    @PostMapping
+    @PostMapping("/new-group")
+    @Operation(summary = "Add new group")
+    public void addGroup(@RequestBody GroupInfoRequest groupInfoRequest) {
+        groupExpenseService.addNewGroup(groupInfoRequest);
+    }
+
+    @GetMapping("/login")
+    @Operation(summary = "Log in")
+    public boolean logIn(@RequestParam String userName, @RequestParam String password) {
+        return groupExpenseService.logIn(userName, password);
+    }
+
 
 }
 

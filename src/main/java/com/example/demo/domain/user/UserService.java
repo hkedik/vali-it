@@ -7,6 +7,7 @@ import com.example.demo.domain.contact.ContactRepository;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -29,6 +30,14 @@ public class UserService {
         user.setContact(foundContact);
         userRepository.save(user);
 
+    }
+
+    public boolean logIn(String userName, String password) {
+        Optional<User> user = userRepository.loginControl(userName, password);
+        if (user.isEmpty()) {
+            return false;
+        }
+        return true;
     }
 }
 
