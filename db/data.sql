@@ -31,7 +31,11 @@ VALUES (DEFAULT, 1, 1, 25.00);
 INSERT INTO public.student_balance (id, group_balance_id, student_id, balance)
 VALUES (DEFAULT, 1, 2, 475.00);
 
+INSERT INTO public.user_in_group (id, group_info_id, user_id, date_activated, is_active, is_moderator)
+VALUES (DEFAULT, 1, 1, '2022-04-26', true, true);
 
+INSERT INTO public.user_in_group (id, group_info_id, user_id, date_activated, is_active, is_moderator)
+VALUES (DEFAULT, 1, 2, '2022-04-27', true, DEFAULT);
 
 
 
