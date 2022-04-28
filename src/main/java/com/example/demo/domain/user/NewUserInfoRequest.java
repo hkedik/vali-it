@@ -5,9 +5,8 @@ import lombok.Data;
 import java.io.Serializable;
 
 @Data
-public class UserDto implements Serializable {
-    private final Integer id;
-    private final Integer contactId;
+public class NewUserInfoRequest implements Serializable {
+
     private final String contactFirstName;
     private final String contactLastName;
     private final String contactEmail;

@@ -1,7 +1,8 @@
 package com.example.demo.service;
 
-import com.example.demo.domain.contact.ContactDto;
+
 import com.example.demo.domain.contact.ContactService;
+import com.example.demo.domain.user.NewUserInfoRequest;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,13 +20,13 @@ public class GroupExpenseController {
 
     @PostMapping("/new-user")
     @Operation(summary = "Add new user")
-    public void addNewUser(@RequestParam String username, @RequestParam String password) {
-        groupExpenseService.addNewUser(username, password);
+    public void addNewUser(@RequestBody NewUserInfoRequest newUserInfoRequest) {
+        groupExpenseService.addNewUser(newUserInfoRequest);
     }
 
-    @PostMapping("/new-contact-info")
-    @Operation(summary = "Add contact info")
-    public void addNewContactInfo(@RequestBody ContactDto contactDto) {
-        groupExpenseService.addNewContactInfo(contactDto);
-    }
+
+
+    @PostMapping
+
 }
+

@@ -1,11 +1,9 @@
 package com.example.demo.domain.user;
 
 import com.example.demo.domain.contact.Contact;
-import lombok.Data;
-
 import javax.persistence.*;
 
-@Data
+
 @Entity
 @Table(name = "\"user\"")
 public class User {
