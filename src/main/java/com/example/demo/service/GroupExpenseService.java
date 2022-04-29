@@ -3,7 +3,8 @@ package com.example.demo.service;
 
 import com.example.demo.domain.group_info.GroupInfoRequest;
 import com.example.demo.domain.group_info.GroupInfoService;
-import com.example.demo.domain.student.NewStudentRequest;
+import com.example.demo.domain.student.StudentInfoRequest;
+
 import com.example.demo.domain.student.StudentService;
 import com.example.demo.domain.user.NewUserInfoRequest;
 import com.example.demo.domain.user.UserService;
@@ -38,7 +39,7 @@ public class GroupExpenseService {
     }
 
 
-    public void addNewStudent(NewStudentRequest request) {
+    public void addNewStudent(StudentInfoRequest request) {
         studentService.addNewStudent(request);
     }
 }

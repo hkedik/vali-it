@@ -4,12 +4,10 @@ import org.mapstruct.*;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring")
 public interface StudentMapper {
+    Student requestToStudent(StudentInfoRequest studentInfoRequest);
 
-
-    Student requestToStudent(NewStudentRequest newStudentRequest);
-
-    NewStudentRequest studentToNewStudentRequest(Student student);
+    StudentInfoRequest studentToStudentInfoRequest(Student student);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    void updateStudentFromNewStudentRequest(NewStudentRequest newStudentRequest, @MappingTarget Student student);
+    void updateStudentFromStudentInfoRequest(StudentInfoRequest studentInfoRequest, @MappingTarget Student student);
 }
