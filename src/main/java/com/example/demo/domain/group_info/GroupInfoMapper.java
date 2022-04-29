@@ -6,7 +6,7 @@ import org.mapstruct.*;
 public interface GroupInfoMapper {
 
 
-    GroupInfo requestToGroupInfo(GroupInfoRequest groupInfoRequest);
+    GroupInfo requestToNewGroup(GroupInfoRequest request);
 
     GroupInfoRequest groupInfoToGroupInfoDto(GroupInfo groupInfo);
 

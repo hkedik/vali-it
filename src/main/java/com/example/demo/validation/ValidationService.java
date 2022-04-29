@@ -1,5 +1,6 @@
 package com.example.demo.validation;
 
+import com.example.demo.domain.group_info.GroupInfo;
 import com.example.demo.domain.user.User;
 import com.example.demo.infrastructure.exception.BusinessException;
 import com.example.demo.infrastructure.exception.DataNotFoundException;
@@ -20,6 +21,13 @@ public class ValidationService {
             throw new BusinessException(INCORRECT_DETAILS, NOT_ALLOWED_LOG_IN_DETAILS);
         }
     }
+
+    public void groupExists(Optional<GroupInfo> group) {
+        if (group.isPresent()) {
+            throw new BusinessException("Group with that name already exists", "Change the group name");
+        }
+    }
+
 
 //    public void accountExists(String accountNumber, Optional<Account> account) {
 //        if (account.isEmpty()) {

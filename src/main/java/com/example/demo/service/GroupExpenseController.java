@@ -21,7 +21,6 @@ public class GroupExpenseController {
     @Operation(summary = "Add new user")
     public void addNewUser(@RequestBody NewUserInfoRequest request) {
         groupExpenseService.addNewUser(request);
-        System.out.println("sergei");
     }
 
 

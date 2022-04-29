@@ -20,12 +20,12 @@ public class GroupExpenseService {
     private GroupInfoService groupInfoService;
 
 
-    public void addNewUser(NewUserInfoRequest newUserInfoRequest) {
-        userService.addNewUser(newUserInfoRequest);
+    public void addNewUser(NewUserInfoRequest request) {
+        userService.addNewUser(request);
     }
 
-    public void addNewGroup(GroupInfoRequest groupInfoRequest) {
-        groupInfoService.addNewGroup(groupInfoRequest);
+    public void addNewGroup(GroupInfoRequest request) {
+        groupInfoService.addNewGroup(request);
     }
 
 }

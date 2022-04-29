@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 
 @RestController
-@RequestMapping
+@RequestMapping("/user")
 public class ParentController {
 
     @Resource
