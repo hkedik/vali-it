@@ -32,12 +32,6 @@ public class GroupExpenseController {
         groupExpenseService.addNewGroup(groupInfoRequest);
     }
 
-    @GetMapping("/login")
-    @Operation(summary = "Log in")
-    public boolean logIn(@RequestParam String userName, @RequestParam String password) {
-        return groupExpenseService.logIn(userName, password);
-    }
-
     @PostMapping("/new-student")
     @Operation(summary = "Add new student")
     public void addNewStudent(@RequestBody StudentInfoRequest request) {

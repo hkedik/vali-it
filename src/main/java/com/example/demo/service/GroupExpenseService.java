@@ -14,9 +14,9 @@ import javax.annotation.Resource;
 
 @Service
 public class GroupExpenseService {
-    
-    
-    @Resource 
+
+
+    @Resource
     private UserService userService;
 
     @Resource
@@ -32,10 +32,6 @@ public class GroupExpenseService {
     public void addNewGroup(GroupInfoRequest groupInfoRequest) {
         groupInfoService.addNewGroup(groupInfoRequest);
 
-    }
-
-    public boolean logIn(String userName, String password) {
-       return userService.logIn(userName, password);
     }
 
 
