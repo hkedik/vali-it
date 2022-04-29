@@ -2,7 +2,6 @@ package com.example.demo.service;
 
 
 import com.example.demo.domain.group_info.GroupInfoRequest;
-import com.example.demo.domain.student.StudentInfoRequest;
 import com.example.demo.domain.user.NewUserInfoRequest;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.*;
@@ -20,22 +19,17 @@ public class GroupExpenseController {
 
     @PostMapping("/new-user")
     @Operation(summary = "Add new user")
-    public void addNewUser(@RequestBody NewUserInfoRequest newUserInfoRequest) {
-        groupExpenseService.addNewUser(newUserInfoRequest);
+    public void addNewUser(@RequestBody NewUserInfoRequest request) {
+        groupExpenseService.addNewUser(request);
         System.out.println("sergei");
     }
 
 
     @PostMapping("/new-group")
     @Operation(summary = "Add new group")
-    public void addGroup(@RequestBody GroupInfoRequest groupInfoRequest) {
-        groupExpenseService.addNewGroup(groupInfoRequest);
+    public void addGroup(@RequestBody GroupInfoRequest request) {
+        groupExpenseService.addNewGroup(request);
     }
 
-    @PostMapping("/new-student")
-    @Operation(summary = "Add new student")
-    public void addNewStudent(@RequestBody StudentInfoRequest request) {
-        groupExpenseService.addNewStudent(request);
-    }
 }
 
