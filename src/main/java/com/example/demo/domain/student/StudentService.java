@@ -7,6 +7,7 @@ import com.example.demo.domain.user_student.UserStudentRepository;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 public class StudentService {
@@ -35,5 +36,16 @@ public class StudentService {
         userStudent.setStudent(student);
         userStudent.setUser(userRepository.getById(request.getParentUserId()));
         userStudentRepository.save(userStudent);
+    }
+
+    public List<Student> getYourGroupStudents(Integer groupId) {
+        List<Student> groupStudents = studentRepository.findStudentsByGroupId(groupId);
+        return groupStudents;
+
+    }
+
+    public List<Student> getYourGroupUnregisteredStudents(Integer groupId) {
+        List<Student> unregisteredStudents = studentRepository.findUnregisteredStudents(groupId, false);
+        return unregisteredStudents;
     }
 }

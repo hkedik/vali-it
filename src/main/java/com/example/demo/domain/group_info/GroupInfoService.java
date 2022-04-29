@@ -2,6 +2,7 @@ package com.example.demo.domain.group_info;
 
 
 import com.example.demo.domain.group_balance.GroupBalanceService;
+import com.example.demo.domain.student.Student;
 import com.example.demo.domain.user_in_group.UserInGroupService;
 import com.example.demo.validation.ValidationService;
 import org.springframework.stereotype.Service;
@@ -38,6 +39,9 @@ public class GroupInfoService {
         Optional<GroupInfo> savedGroup = groupInfoRepository.findByGroupName(newGroup.getGroupName());
         userInGroupService.newGroupModerator(request.getUserId(), savedGroup.get());
         groupBalanceService.addNewGroupBalance(savedGroup.get());
+    }
+
+    public void addStudentToGroup(Student student) {
 
     }
 }

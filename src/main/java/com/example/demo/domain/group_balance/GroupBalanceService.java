@@ -17,7 +17,7 @@ public class GroupBalanceService {
         this.groupInfo = groupInfo;
         GroupBalance groupBalance = new GroupBalance();
         groupBalance.setGroupInfo(groupInfo);
-        groupBalance.setBalance(BigDecimal.valueOf(0.00));
+        groupBalance.setBalance(new BigDecimal(0.00));
         groupBalanceRepository.save(groupBalance);
     }
 }
