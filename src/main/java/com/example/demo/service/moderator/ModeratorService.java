@@ -24,7 +24,9 @@ public class ModeratorService {
         return studentService.allRegisteredStudents(groupId);
     }
 
-//    public void addStudentToGroup(Integer studentId) {
-//        studentService.addStudentToGroup(studentId
-//    }
+    public void addStudentToGroup(Integer studentId, Boolean active) {
+        studentService.addStudentToGroup(studentId, active);
+    }
+
+
 }

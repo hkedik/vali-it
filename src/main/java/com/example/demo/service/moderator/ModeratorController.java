@@ -27,10 +27,10 @@ public class ModeratorController {
         return moderatorService.allRegisteredStudents(groupId);
     }
 
-//    @PutMapping("/student-activation")
-//    @Operation(summary = "Add student to group")
-//    public void addStudentToGroup(@RequestParam Integer studentId) {
-//        moderatorService.addStudentToGroup(studentId);
-//    }
+    @PutMapping("/student-activation")
+    @Operation(summary = "Add student to group")
+    public void addStudentToGroup(@RequestParam Integer studentId, @RequestParam Boolean active) {
+        moderatorService.addStudentToGroup(studentId, active);
+    }
 
 }

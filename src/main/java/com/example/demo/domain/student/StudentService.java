@@ -1,17 +1,16 @@
 package com.example.demo.domain.student;
 
-import com.example.demo.domain.group_info.GroupInfoRepository;
 import com.example.demo.domain.group_info.GroupInfoService;
 import com.example.demo.domain.user.User;
-import com.example.demo.domain.user.UserRepository;
 import com.example.demo.domain.user.UserService;
-import com.example.demo.domain.user_student.UserStudent;
-import com.example.demo.domain.user_student.UserStudentRepository;
+import com.example.demo.domain.user_in_group.UserInGroupService;
 import com.example.demo.domain.user_student.UserStudentService;
+import com.example.demo.validation.ValidationService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class StudentService {
@@ -30,6 +29,12 @@ public class StudentService {
 
     @Resource
     private UserService userService;
+
+    @Resource
+    private ValidationService validationService;
+
+    @Resource
+    private UserInGroupService userInGroupService;
 
 
     public void addNewStudent(StudentInfoRequest request) {
@@ -51,5 +56,15 @@ public class StudentService {
         List<Student> registeredStudents = studentRepository.findRegisteredStudents(groupId);
 
         return studentMapper.studentToStudentInfoResponse(registeredStudents);
+    }
+
+    public void addStudentToGroup(Integer studentId, Boolean active) {
+        Optional<Student> student = studentRepository.findById(studentId);
+        validationService.isValidStudent(student, studentId);
+        Student registeredStudent = student.get();
+        registeredStudent.setActive(active);
+        studentRepository.save(registeredStudent);
+        Integer parentId = userStudentService.getParentId(studentId);
+        userInGroupService.parentGroupConnection(parentId, registeredStudent.getGroupInfo().getId(), active);
     }
 }

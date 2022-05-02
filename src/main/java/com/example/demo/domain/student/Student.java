@@ -2,6 +2,8 @@ package com.example.demo.domain.student;
 
 import com.example.demo.domain.group_info.GroupInfo;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.Null;
@@ -10,6 +12,8 @@ import java.time.LocalDate;
 @Data
 @Entity
 @Table(name = "student")
+@Getter
+@Setter
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

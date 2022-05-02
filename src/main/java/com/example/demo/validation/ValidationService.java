@@ -1,11 +1,14 @@
 package com.example.demo.validation;
 
 import com.example.demo.domain.group_info.GroupInfo;
+import com.example.demo.domain.student.Student;
 import com.example.demo.domain.user.User;
+import com.example.demo.domain.user_student.UserStudent;
 import com.example.demo.infrastructure.exception.BusinessException;
 import com.example.demo.infrastructure.exception.DataNotFoundException;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.Optional;
 
 @Service
@@ -37,6 +40,18 @@ public class ValidationService {
     public void isValidGroup(Optional<GroupInfo> groupInfo, Integer groupInfoId) {
         if (groupInfo.isEmpty()) {
             throw new DataNotFoundException("Group does not exist", "Group with groupId " + groupInfoId + " does not exist");
+        }
+    }
+
+    public void isValidStudent(Optional<Student> student, Integer studentId) {
+        if (student.isEmpty()) {
+            throw new DataNotFoundException("Student does not exist", "Student with studentId " + studentId + " does not exist");
+        }
+    }
+
+    public void isValidUserStudentRelationship(Optional<UserStudent> byStudentId, Integer studentId) {
+        if (byStudentId.isEmpty()) {
+            throw new DataNotFoundException("ERROR ERROR ERROR nr. ", "" + studentId );
         }
     }
 

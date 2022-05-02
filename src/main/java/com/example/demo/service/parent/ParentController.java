@@ -1,7 +1,6 @@
 package com.example.demo.service.parent;
 
 import com.example.demo.domain.student.StudentInfoRequest;
-import com.example.demo.domain.student.StudentInfoResponse;
 import io.swagger.v3.oas.annotations.Operation;
 
 import org.springframework.web.bind.annotation.PostMapping;
