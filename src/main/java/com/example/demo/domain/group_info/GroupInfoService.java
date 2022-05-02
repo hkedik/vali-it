@@ -34,10 +34,12 @@ public class GroupInfoService {
         validationService.groupExists(group);
         GroupInfo newGroup = groupInfoMapper.requestToNewGroup(request);
         newGroup.setDateTime(Instant.now());
-        groupInfoRepository.save(newGroup);
-        Optional<GroupInfo> savedGroup = groupInfoRepository.findByGroupName(newGroup.getGroupName());
-        userInGroupService.newGroupModerator(request.getUserId(), savedGroup.get());
-        groupBalanceService.addNewGroupBalance(savedGroup.get());
+        GroupInfo savedGroup = groupInfoRepository.save(newGroup);
+    // jaaguar
+        userInGroupService.newGroupModerator(request.getUserId(), savedGroup);
+        groupBalanceService.addNewGroupBalance(savedGroup);
+
+
 
     }
 }
