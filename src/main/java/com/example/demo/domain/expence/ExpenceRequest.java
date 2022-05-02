@@ -10,6 +10,7 @@ import java.time.Instant;
 public class ExpenceRequest implements Serializable {
 
     private final Integer expenceId;
+    private final Integer groupBalanceId;
     private final String expenceTitle;
     private final String expenceDescription;
     private final Integer expenceAmount;

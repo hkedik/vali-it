@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 
+import com.example.demo.domain.expence.ExpenceRequest;
 import com.example.demo.domain.group_info.GroupInfoRequest;
 import com.example.demo.domain.user.NewUserInfoRequest;
 import io.swagger.v3.oas.annotations.Operation;
@@ -16,7 +17,6 @@ public class GroupExpenseController {
     private GroupExpenseService groupExpenseService;
 
 
-
     @PostMapping("/new-user")
     @Operation(summary = "Add new user")
     public void addNewUser(@RequestBody NewUserInfoRequest request) {
@@ -30,5 +30,10 @@ public class GroupExpenseController {
         groupExpenseService.addNewGroup(request);
     }
 
+    @PostMapping("/new-expence")
+    @Operation(summary = "Add new expence")
+    public void addExpence(@RequestBody ExpenceRequest request) {
+        groupExpenseService.addNewExpence(request);
+    }
 }
 

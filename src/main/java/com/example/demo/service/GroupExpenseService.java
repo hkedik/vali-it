@@ -1,6 +1,8 @@
 package com.example.demo.service;
 
 
+import com.example.demo.domain.expence.ExpenceRequest;
+import com.example.demo.domain.expence.ExpenceService;
 import com.example.demo.domain.group_info.GroupInfoRequest;
 import com.example.demo.domain.group_info.GroupInfoService;
 import com.example.demo.domain.user.NewUserInfoRequest;
@@ -19,6 +21,8 @@ public class GroupExpenseService {
     @Resource
     private GroupInfoService groupInfoService;
 
+    @Resource ExpenceService expenceService;
+
 
     public void addNewUser(NewUserInfoRequest request) {
         userService.addNewUser(request);
@@ -28,4 +32,7 @@ public class GroupExpenseService {
         groupInfoService.addNewGroup(request);
     }
 
+    public void addNewExpence(ExpenceRequest request) {
+        expenceService.addNewExpence(request);
+    }
 }
