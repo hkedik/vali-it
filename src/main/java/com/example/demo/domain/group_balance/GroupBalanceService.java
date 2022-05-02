@@ -32,4 +32,13 @@ public class GroupBalanceService {
         return byGroupInfo_id.get();
 
     }
+
+    public void addMoneyToGroupBalance(Integer groupBalanceId, BigDecimal amount) {
+        Optional<GroupBalance> balance = groupBalanceRepository.findById(groupBalanceId);
+        validationService.isValidGroupBalance(balance);
+        GroupBalance groupBalance = balance.get();
+        BigDecimal groupMoney = groupBalance.getBalance();
+        groupBalance.setBalance(groupMoney.add(amount));
+        groupBalanceRepository.save(groupBalance);
+    }
 }

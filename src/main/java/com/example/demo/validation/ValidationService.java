@@ -3,6 +3,7 @@ package com.example.demo.validation;
 import com.example.demo.domain.group_balance.GroupBalance;
 import com.example.demo.domain.group_info.GroupInfo;
 import com.example.demo.domain.student.Student;
+import com.example.demo.domain.student_balance.StudentBalance;
 import com.example.demo.domain.user.User;
 import com.example.demo.domain.user_student.UserStudent;
 import com.example.demo.infrastructure.exception.BusinessException;
@@ -59,6 +60,12 @@ public class ValidationService {
     public void isValidGroupBalance(Optional<GroupBalance> byGroupInfo_id) {
         if (byGroupInfo_id.isEmpty()) {
             throw new DataNotFoundException("ERROR ERROR ERROR nr. ", "" + byGroupInfo_id );
+        }
+    }
+
+    public void isValidStudentBalance(Optional<StudentBalance> byStudent_id) {
+        if (byStudent_id.isEmpty()) {
+            throw new DataNotFoundException("ERROR ERROR ERROR nr. ", "" + byStudent_id );
         }
     }
 
