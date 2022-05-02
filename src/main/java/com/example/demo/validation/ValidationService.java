@@ -28,6 +28,18 @@ public class ValidationService {
         }
     }
 
+    public void isValidUser(Integer userId, Optional<User> user) {
+        if (user.isEmpty()) {
+            throw new DataNotFoundException("User does not exist", "User with userId: " + userId + " does not exist");
+        }
+    }
+
+    public void isValidGroup(Optional<GroupInfo> groupInfo, Integer groupInfoId) {
+        if (groupInfo.isEmpty()) {
+            throw new DataNotFoundException("Group does not exist", "Group with groupId " + groupInfoId + " does not exist");
+        }
+    }
+
 
 //    public void accountExists(String accountNumber, Optional<Account> account) {
 //        if (account.isEmpty()) {

@@ -53,5 +53,10 @@ public class UserService {
         validationService.isLoginOk(user);
         return user.get();
     }
+    public User getValidUser(Integer userId) {
+        Optional<User> user = userRepository.findById(userId);
+        validationService.isValidUser(userId, user);
+        return user.get();
+    }
 }
 

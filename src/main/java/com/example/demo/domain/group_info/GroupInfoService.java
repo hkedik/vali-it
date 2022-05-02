@@ -37,8 +37,12 @@ public class GroupInfoService {
         GroupInfo savedGroup = groupInfoRepository.save(newGroup);
         userInGroupService.newGroupModerator(request.getUserId(), savedGroup);
         groupBalanceService.addNewGroupBalance(savedGroup);
+    }
 
-
+    public GroupInfo getGroupById(Integer groupInfoId) {
+        Optional<GroupInfo> groupInfo = groupInfoRepository.findById(groupInfoId);
+        validationService.isValidGroup(groupInfo, groupInfoId);
+        return groupInfo.get();
 
     }
 }

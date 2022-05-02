@@ -13,6 +13,10 @@ public interface StudentMapper {
     @Mapping(source = "id", target = "studentId")
     StudentInfoResponse studentToStudentInfoResponse(Student student);
 
+
+    StudentInfoResponse toStudentInfo(StudentInfoRequest request);
+
+
    List <StudentInfoRequest> studentToStudentInfoRequest(List <Student> student);
 
    @Mapping(source = "id", target = "studentId")

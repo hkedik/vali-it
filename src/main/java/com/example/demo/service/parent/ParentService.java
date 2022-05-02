@@ -14,7 +14,7 @@ public class ParentService {
     @Resource
     private StudentService studentService;
 
-    public StudentInfoResponse addNewStudent(StudentInfoRequest request) {
-        return studentService.addNewStudent(request);
+    public void addNewStudent(StudentInfoRequest request) {
+        studentService.addNewStudent(request);
     }
 }

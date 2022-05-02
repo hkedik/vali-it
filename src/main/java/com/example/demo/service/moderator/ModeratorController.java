@@ -2,10 +2,7 @@ package com.example.demo.service.moderator;
 
 import com.example.demo.domain.student.StudentInfoResponse;
 import io.swagger.v3.oas.annotations.Operation;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -29,5 +26,11 @@ public class ModeratorController {
     public List<StudentInfoResponse> allRegisteredStudents(@RequestParam Integer groupId) {
         return moderatorService.allRegisteredStudents(groupId);
     }
+
+//    @PutMapping("/student-activation")
+//    @Operation(summary = "Add student to group")
+//    public void addStudentToGroup(@RequestParam Integer studentId) {
+//        moderatorService.addStudentToGroup(studentId);
+//    }
 
 }

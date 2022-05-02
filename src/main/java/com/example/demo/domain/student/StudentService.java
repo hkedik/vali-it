@@ -1,9 +1,13 @@
 package com.example.demo.domain.student;
 
 import com.example.demo.domain.group_info.GroupInfoRepository;
+import com.example.demo.domain.group_info.GroupInfoService;
+import com.example.demo.domain.user.User;
 import com.example.demo.domain.user.UserRepository;
+import com.example.demo.domain.user.UserService;
 import com.example.demo.domain.user_student.UserStudent;
 import com.example.demo.domain.user_student.UserStudentRepository;
+import com.example.demo.domain.user_student.UserStudentService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -19,25 +23,23 @@ public class StudentService {
     private StudentRepository studentRepository;
 
     @Resource
-    private GroupInfoRepository groupInfoRepository;
+    private GroupInfoService groupInfoService;
 
     @Resource
-    private UserStudentRepository userStudentRepository;
+    private UserStudentService userStudentService;
 
     @Resource
-    private UserRepository userRepository;
+    private UserService userService;
 
 
-    public StudentInfoResponse addNewStudent(StudentInfoRequest request) {
+    public void addNewStudent(StudentInfoRequest request) {
         Student student = studentMapper.requestToStudent(request);
-        student.setGroupInfo(groupInfoRepository.getById(request.getGroupInfoId()));
-        Student savedStudent = studentRepository.save(student);
-        UserStudent userStudent = new UserStudent();
-        userStudent.setStudent(savedStudent);
-        userStudent.setUser(userRepository.getById(request.getParentUserId()));
-        userStudentRepository.save(userStudent);
-        return studentMapper.studentToStudentInfoResponse(savedStudent);
+        student.setGroupInfo(groupInfoService.getGroupById(request.getGroupInfoId()));
+        studentRepository.save(student);
+        User user = userService.getValidUser(request.getParentUserId());
+        userStudentService.addStudentUserRelationship(student, user);
     }
+
 
     public List<StudentInfoResponse> allStudents(Integer groupId) {
         List<Student> all = studentRepository.findByGroupInfo_Id(groupId);
@@ -47,6 +49,7 @@ public class StudentService {
 
     public List<StudentInfoResponse> allRegisteredStudents(Integer groupId) {
         List<Student> registeredStudents = studentRepository.findRegisteredStudents(groupId);
+
         return studentMapper.studentToStudentInfoResponse(registeredStudents);
     }
 }

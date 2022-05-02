@@ -23,4 +23,8 @@ public class ModeratorService {
     public List<StudentInfoResponse> allRegisteredStudents(Integer groupId) {
         return studentService.allRegisteredStudents(groupId);
     }
+
+//    public void addStudentToGroup(Integer studentId) {
+//        studentService.addStudentToGroup(studentId
+//    }
 }

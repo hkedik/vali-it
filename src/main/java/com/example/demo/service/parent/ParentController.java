@@ -21,7 +21,7 @@ public class ParentController {
 
     @PostMapping("/new-student")
     @Operation(summary = "Add new student")
-    public StudentInfoResponse addNewStudent(@RequestBody StudentInfoRequest request) {
-        return parentService.addNewStudent(request);
+    public void addNewStudent(@RequestBody StudentInfoRequest request) {
+        parentService.addNewStudent(request);
     }
 }
