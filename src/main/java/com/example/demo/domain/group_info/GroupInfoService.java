@@ -35,7 +35,6 @@ public class GroupInfoService {
         GroupInfo newGroup = groupInfoMapper.requestToNewGroup(request);
         newGroup.setDateTime(Instant.now());
         GroupInfo savedGroup = groupInfoRepository.save(newGroup);
-    // jaaguar
         userInGroupService.newGroupModerator(request.getUserId(), savedGroup);
         groupBalanceService.addNewGroupBalance(savedGroup);
 

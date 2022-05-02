@@ -10,6 +10,8 @@ public interface StudentMapper {
 
     StudentInfoRequest studentToStudentInfoRequest(Student student);
 
+    StudentInfoResponse studentToStudentInfoResponse(Student student);
+
    List <StudentInfoRequest> studentToStudentInfoRequest(List <Student> student);
 
 
