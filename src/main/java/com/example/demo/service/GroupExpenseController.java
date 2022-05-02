@@ -35,5 +35,7 @@ public class GroupExpenseController {
     public void addExpence(@RequestBody ExpenceRequest request) {
         groupExpenseService.addNewExpence(request);
     }
+
+
 }
 
