@@ -1,6 +1,7 @@
 package com.example.demo.domain.student;
 
 import com.example.demo.domain.group_info.GroupInfoService;
+import com.example.demo.domain.student_balance.StudentBalanceService;
 import com.example.demo.domain.user.User;
 import com.example.demo.domain.user.UserService;
 import com.example.demo.domain.user_in_group.UserInGroupService;
@@ -36,6 +37,9 @@ public class StudentService {
     @Resource
     private UserInGroupService userInGroupService;
 
+    @Resource
+    private StudentBalanceService studentBalanceService;
+
 
     public void addNewStudent(StudentInfoRequest request) {
         Student student = studentMapper.requestToStudent(request);
@@ -43,6 +47,8 @@ public class StudentService {
         studentRepository.save(student);
         User user = userService.getValidUser(request.getParentUserId());
         userStudentService.addStudentUserRelationship(student, user);
+        studentBalanceService.addNewStudentBalance(student,student.getGroupInfo().getId());
+
     }
 
 
