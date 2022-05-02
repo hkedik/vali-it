@@ -11,4 +11,5 @@ public class StudentInfoResponse implements Serializable {
     private String firstName;
     private String lastName;
     private LocalDate dateOfBirth;
+    private Boolean active;
 }

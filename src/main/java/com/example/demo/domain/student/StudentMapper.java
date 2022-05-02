@@ -10,9 +10,13 @@ public interface StudentMapper {
 
     StudentInfoRequest studentToStudentInfoRequest(Student student);
 
+    @Mapping(source = "id", target = "studentId")
     StudentInfoResponse studentToStudentInfoResponse(Student student);
 
    List <StudentInfoRequest> studentToStudentInfoRequest(List <Student> student);
+
+   @Mapping(source = "id", target = "studentId")
+   List <StudentInfoResponse> studentToStudentInfoResponse(List <Student> student);
 
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
