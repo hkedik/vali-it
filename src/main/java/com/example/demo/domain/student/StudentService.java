@@ -1,5 +1,6 @@
 package com.example.demo.domain.student;
 
+import com.example.demo.domain.expence.ExpenseRequest;
 import com.example.demo.domain.group_info.GroupInfoService;
 import com.example.demo.domain.student_balance.StudentBalanceService;
 import com.example.demo.domain.user.User;
@@ -10,6 +11,8 @@ import com.example.demo.validation.ValidationService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -72,5 +75,26 @@ public class StudentService {
         studentRepository.save(registeredStudent);
         Integer parentId = userStudentService.getParentId(studentId);
         userInGroupService.parentGroupConnection(parentId, registeredStudent.getGroupInfo().getId(), active);
+    }
+
+    public void changeStudentBalance(ExpenseRequest request) {
+        List<StudentInfoResponse> students = request.getStudents();
+        double counter  = 0;
+        List<StudentInfoResponse> selectedStudents = new ArrayList<>();
+        for (StudentInfoResponse student : students) {
+            if(student.getSelected()) {
+                selectedStudents.add(student);
+                counter++;
+            }
+        }
+
+        BigDecimal amount = request.getAmount();
+        amount.divide(BigDecimal.valueOf(counter));
+
+        for (StudentInfoResponse selectedStudent : selectedStudents) {
+
+            studentBalanceService.creditStudentBalance(selectedStudent, amount);
+
+        }
     }
 }

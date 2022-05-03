@@ -1,5 +1,6 @@
 package com.example.demo.domain.group_balance;
 
+import com.example.demo.domain.expence.ExpenseRequest;
 import com.example.demo.domain.group_info.GroupInfo;
 import com.example.demo.validation.ValidationService;
 import org.springframework.stereotype.Service;
@@ -21,7 +22,7 @@ public class GroupBalanceService {
     private ValidationService validationService;
 
     public void addNewGroupBalance(GroupInfo groupInfo) {
-      //  this.groupInfo = groupInfo;
+        //  this.groupInfo = groupInfo;
         GroupBalance groupBalance = new GroupBalance();
         groupBalance.setGroupInfo(groupInfo);
         groupBalance.setBalance(BigDecimal.valueOf(0.00));
@@ -50,6 +51,17 @@ public class GroupBalanceService {
         validationService.isValidGroupBalance(balance);
         GroupBalance groupBalance = balance.get();
         return groupBalanceMapper.groupBalanceToGroupBalanceResponse(groupBalance);
+
+    }
+
+    public void changeGroupBalance(ExpenseRequest request) {
+        Optional<GroupBalance> byId = groupBalanceRepository.findByGroupInfo_Id(request.getGroupId());
+        validationService.isValidGroupBalance(byId);
+        GroupBalance groupBalance = byId.get();
+        BigDecimal balance = groupBalance.getBalance();
+        groupBalance.setBalance(balance.subtract(request.getAmount()));
+        groupBalanceRepository.save(groupBalance);
+
 
     }
 }

@@ -5,6 +5,7 @@ import com.example.demo.domain.group_balance.GroupBalance;
 import com.example.demo.domain.group_balance.GroupBalanceRepository;
 import com.example.demo.domain.group_balance.GroupBalanceService;
 import com.example.demo.domain.student.Student;
+import com.example.demo.domain.student.StudentInfoResponse;
 import com.example.demo.domain.student_balance_log.StudentBalanceLogService;
 import com.example.demo.validation.ValidationService;
 import org.springframework.stereotype.Service;
@@ -66,4 +67,13 @@ public class StudentBalanceService {
     }
 
 
+    public void creditStudentBalance(StudentInfoResponse selectedStudent, BigDecimal amount) {
+        Optional<StudentBalance> byStudent_id = studentBalanceRepository.findByStudent_Id(selectedStudent.getStudentId());
+        validationService.isValidStudentBalance(byStudent_id);
+        StudentBalance studentBalance = byStudent_id.get();
+        BigDecimal balance = studentBalance.getBalance();
+        studentBalance.setBalance(balance.subtract(amount));
+        studentBalanceRepository.save(studentBalance);
+
+    }
 }

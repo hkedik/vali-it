@@ -1,11 +1,12 @@
 package com.example.demo.service.moderator;
 
+import com.example.demo.domain.expence.ExpenseRequest;
 import com.example.demo.domain.student.StudentInfoResponse;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import javax.persistence.criteria.CriteriaBuilder;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -35,10 +36,16 @@ public class ModeratorController {
         moderatorService.addStudentToGroup(studentId, active);
     }
 
-    @PutMapping("/add-money")
+    @PutMapping("/money-deposit")
     @Operation(summary = "Add money to student account")
     public void addMoneyToStudentAccount(@RequestParam Integer studentId, @RequestParam BigDecimal amount) {
         moderatorService.addMoneyToStudentAccount(studentId, amount);
+    }
+
+    @PostMapping("/new-expense")
+    @Operation(summary = "Add new expense")
+    public void addNewExpense(@RequestBody ExpenseRequest request) {
+        moderatorService.addNewExpense(request);
     }
 
 }
