@@ -1,5 +1,6 @@
 package com.example.demo.service.moderator;
 
+import com.example.demo.domain.contact.ContactResponse;
 import com.example.demo.domain.expence.ExpenseRequest;
 import com.example.demo.domain.student.StudentInfoResponse;
 import io.swagger.v3.oas.annotations.Operation;
@@ -48,4 +49,15 @@ public class ModeratorController {
         moderatorService.addNewExpense(request);
     }
 
+    @GetMapping("/user-contact-info")
+    @Operation(summary = "Get contact info by user id")
+    public ContactResponse getContactInfoByUserId(@RequestParam Integer userId) {
+        return moderatorService.getContactInfoByUserId(userId);
+    }
+
+    @GetMapping("/user-contact-by-student-id")
+    @Operation(summary = "Find user contact by student id")
+    public ContactResponse getContactInfoByStudentId(@RequestParam Integer studentId) {
+        return moderatorService.getContactInfoByStudentId(studentId);
+    }
 }

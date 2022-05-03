@@ -42,4 +42,6 @@ public class ParentController {
     public GroupInfoResponse findGroupByName(@RequestParam String groupName) {
         return parentService.findGroupByName(groupName);
     }
+
+
 }

@@ -3,6 +3,8 @@ package com.example.demo.domain.user_student;
 import com.example.demo.domain.student.Student;
 import com.example.demo.domain.user.User;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 

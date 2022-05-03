@@ -1,5 +1,6 @@
 package com.example.demo.validation;
 
+import com.example.demo.domain.contact.Contact;
 import com.example.demo.domain.group_balance.GroupBalance;
 import com.example.demo.domain.group_info.GroupInfo;
 import com.example.demo.domain.student.Student;
@@ -72,6 +73,12 @@ public class ValidationService {
     public void enteredGroupExists(Optional<GroupInfo> byGroupName, String groupName) {
         if (byGroupName.isEmpty()) {
             throw new DataNotFoundException("This group does not exist", "Group with a name " + groupName + " does not exist.");
+        }
+    }
+
+    public void isValidContact(Optional<Contact> contact) {
+        if (contact.isEmpty()) {
+            throw new DataNotFoundException("Contact info does not exist", "Problem with student id");
         }
     }
 

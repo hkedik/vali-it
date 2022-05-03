@@ -1,5 +1,7 @@
 package com.example.demo.service.moderator;
 
+import com.example.demo.domain.contact.ContactResponse;
+import com.example.demo.domain.contact.ContactService;
 import com.example.demo.domain.expence.ExpenseRequest;
 import com.example.demo.domain.expence.ExpenceService;
 import com.example.demo.domain.student.StudentInfoResponse;
@@ -23,6 +25,9 @@ public class ModeratorService {
     @Resource
     private ExpenceService expenceService;
 
+    @Resource
+    ContactService contactService;
+
 
     public List<StudentInfoResponse> allStudents(Integer groupId) {
         return studentService.allStudents(groupId);
@@ -45,5 +50,13 @@ public class ModeratorService {
 
     public void addNewExpense(ExpenseRequest request) {
         expenceService.addNewExpense(request);
+    }
+
+    public ContactResponse getContactInfoByUserId(Integer userId) {
+        return contactService.getContactInfoByUserId(userId);
+    }
+
+    public ContactResponse getContactInfoByStudentId(Integer studentId) {
+        return contactService.getContactInfoByStudentId(studentId);
     }
 }
