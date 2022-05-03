@@ -24,4 +24,11 @@ public class UserRoleService {
         toModeratorUser.setRole(roleRepository.getById(4));
         userRoleRepository.save(toModeratorUser);
     }
+
+    public void addNewUserRole(User user) {
+        UserRole userRole = new UserRole();
+        userRole.setUser(user);
+        userRole.setRole(roleRepository.getById(3));
+        userRoleRepository.save(userRole);
+    }
 }

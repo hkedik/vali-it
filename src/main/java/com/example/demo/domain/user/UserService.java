@@ -4,9 +4,11 @@ package com.example.demo.domain.user;
 import com.example.demo.domain.contact.Contact;
 import com.example.demo.domain.contact.ContactRepository;
 
+import com.example.demo.domain.contact.ContactService;
 import com.example.demo.domain.role.RoleRepository;
 import com.example.demo.domain.user_role.UserRole;
 import com.example.demo.domain.user_role.UserRoleRepository;
+import com.example.demo.domain.user_role.UserRoleService;
 import com.example.demo.validation.ValidationService;
 import org.springframework.stereotype.Service;
 
@@ -34,18 +36,19 @@ public class UserService {
     @Resource
     private ValidationService validationService;
 
+    @Resource
+    private ContactService contactService;
+
+    @Resource
+    private UserRoleService userRoleService;
+
     public void addNewUser(NewUserInfoRequest newUserInfoRequest) {
 
-        Contact contact = userMapper.requestToContact(newUserInfoRequest);
-        contactRepository.save(contact);
-        Contact foundContact = contactRepository.findByEmail(newUserInfoRequest.getContactEmail());
+        Contact contact = contactService.addNewContact(newUserInfoRequest);
         User user = userMapper.requestToUser(newUserInfoRequest);
-        user.setContact(foundContact);
+        user.setContact(contact);
         userRepository.save(user);
-        UserRole newUserRole = new UserRole();
-        newUserRole.setUser(user);
-        newUserRole.setRole(roleRepository.getById(3));
-        userRoleRepository.save(newUserRole);
+        userRoleService.addNewUserRole(user);
     }
 
     public User getValidUser(String userName, String password) {
@@ -53,6 +56,7 @@ public class UserService {
         validationService.isLoginOk(user);
         return user.get();
     }
+
     public User getValidUser(Integer userId) {
         Optional<User> user = userRepository.findById(userId);
         validationService.isValidUser(userId, user);
