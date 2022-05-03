@@ -49,13 +49,20 @@ public class ContactService {
     }
 
     public ContactResponse getContactInfoByStudentId(Integer studentId) {
-        Optional<UserStudent> userStudent = userStudentRepository.findByStudentId(studentId);
-        validationService.isValidUserStudentRelationship(userStudent, studentId);
-        UserStudent userStudent1 = userStudent.get();
-        Optional<User> user = userRepository.findById(userStudent1.getId());
-        validationService.isValidUser(userStudent1.getUser().getId(), user);
-        Optional<Contact> contact = contactRepository.findById(user.get().getContact().getId());
+        UserStudent userStudent = userStudentRepository.getById(studentId);
+        User user = userRepository.getById(userStudent.getUser().getId());
+        Optional<Contact> contact = contactRepository.findById(user.getContact().getId());
         validationService.isValidContact(contact);
         return contactMapper.contactToContactResponse(contact.get());
+
+
+//        Optional<UserStudent> userStudent = userStudentRepository.findByStudentId(studentId);
+//        validationService.isValidUserStudentRelationship(userStudent, studentId);
+//        UserStudent userStudent1 = userStudent.get();
+//        Optional<User> user = userRepository.findById(userStudent1.getId());
+//        validationService.isValidUser(userStudent1.getUser().getId(), user);
+//        Optional<Contact> contact = contactRepository.findById(user.get().getContact().getId());
+//        validationService.isValidContact(contact);
+//        return contactMapper.contactToContactResponse(contact.get());
     }
 }
