@@ -13,7 +13,9 @@ public class GroupBalanceService {
 
     @Resource
     private GroupBalanceRepository groupBalanceRepository;
-  //  private GroupInfo groupInfo;
+
+    @Resource
+    private GroupBalanceMapper groupBalanceMapper;
 
     @Resource
     private ValidationService validationService;
@@ -40,5 +42,14 @@ public class GroupBalanceService {
         BigDecimal groupMoney = groupBalance.getBalance();
         groupBalance.setBalance(groupMoney.add(amount));
         groupBalanceRepository.save(groupBalance);
+    }
+
+
+    public GroupBalanceResponse getGroupBalance(Integer groupId) {
+        Optional<GroupBalance> balance = groupBalanceRepository.findByGroupInfo_Id(groupId);
+        validationService.isValidGroupBalance(balance);
+        GroupBalance groupBalance = balance.get();
+        return groupBalanceMapper.groupBalanceToGroupBalanceResponse(groupBalance);
+
     }
 }

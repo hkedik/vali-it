@@ -1,5 +1,6 @@
 package com.example.demo.service.parent;
 
+import com.example.demo.domain.group_balance.GroupBalanceResponse;
 import com.example.demo.domain.student.StudentInfoRequest;
 import com.example.demo.domain.student_balance.StudentBalanceResponse;
 import io.swagger.v3.oas.annotations.Operation;
@@ -22,10 +23,15 @@ public class ParentController {
         parentService.addNewStudent(request);
     }
 
-    @GetMapping("/studentBalance")
+    @GetMapping("/student-balance")
     @Operation(summary = "student balance")
     public StudentBalanceResponse findStudentBalanceById(@RequestParam Integer id) {
         return parentService.findStudentBalanceById(id);
+    }
 
+    @GetMapping("/group-balance")
+    @Operation(summary = "Show group balance")
+    public GroupBalanceResponse getGroupBalance(@RequestParam Integer groupId) {
+        return parentService.getGroupBalance(groupId);
     }
 }
