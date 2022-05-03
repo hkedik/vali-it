@@ -29,6 +29,9 @@ public class StudentBalanceService {
     @Resource
     private StudentBalanceLogService studentBalanceLogService;
 
+    @Resource
+    private StudentBalanceMapper studentBalanceMapper;
+
 
     public void addNewStudentBalance(Student student, Integer groupId) {
         StudentBalance studentBalance = new StudentBalance();
@@ -52,4 +55,15 @@ public class StudentBalanceService {
 
 
     }
+
+    public StudentBalanceResponse findStudentBalanceById(Integer id) {
+        Optional<StudentBalance> byStudentId = studentBalanceRepository.findByStudent_Id(id);
+        validationService.isValidStudentBalance(byStudentId);
+        StudentBalance studentBalance = byStudentId.get();
+        StudentBalanceResponse studentBalanceResponse = studentBalanceMapper.studentBalanceToStudentBalanceResponse(studentBalance);
+        return studentBalanceResponse;
+
+    }
+
+
 }

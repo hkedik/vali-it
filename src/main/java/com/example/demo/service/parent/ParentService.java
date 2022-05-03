@@ -4,6 +4,8 @@ import com.example.demo.domain.student.StudentInfoRequest;
 import com.example.demo.domain.student.StudentInfoResponse;
 import com.example.demo.domain.student.StudentService;
 
+import com.example.demo.domain.student_balance.StudentBalanceResponse;
+import com.example.demo.domain.student_balance.StudentBalanceService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -14,7 +16,14 @@ public class ParentService {
     @Resource
     private StudentService studentService;
 
+    @Resource
+    private StudentBalanceService studentBalanceService;
+
     public void addNewStudent(StudentInfoRequest request) {
         studentService.addNewStudent(request);
+    }
+
+    public StudentBalanceResponse findStudentBalanceById(Integer id) {
+        return studentBalanceService.findStudentBalanceById(id);
     }
 }

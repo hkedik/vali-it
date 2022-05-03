@@ -1,12 +1,10 @@
 package com.example.demo.service.parent;
 
 import com.example.demo.domain.student.StudentInfoRequest;
+import com.example.demo.domain.student_balance.StudentBalanceResponse;
 import io.swagger.v3.oas.annotations.Operation;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -22,5 +20,12 @@ public class ParentController {
     @Operation(summary = "Add new student")
     public void addNewStudent(@RequestBody StudentInfoRequest request) {
         parentService.addNewStudent(request);
+    }
+
+    @GetMapping("/studentBalance")
+    @Operation(summary = "student balance")
+    public StudentBalanceResponse findStudentBalanceById(@RequestParam Integer id) {
+        return parentService.findStudentBalanceById(id);
+
     }
 }
