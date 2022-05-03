@@ -9,7 +9,6 @@ import java.time.LocalDate;
 @Data
 public class StudentInfoResponse implements Serializable {
     private Integer studentId;
-    private Integer parentId;
     private String firstName;
     private String lastName;
     private Boolean active;
