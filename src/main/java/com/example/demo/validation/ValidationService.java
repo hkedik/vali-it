@@ -69,6 +69,12 @@ public class ValidationService {
         }
     }
 
+    public void enteredGroupExists(Optional<GroupInfo> byGroupName, String groupName) {
+        if (byGroupName.isEmpty()) {
+            throw new DataNotFoundException("This group does not exist", "Group with a name " + groupName + " does not exist.");
+        }
+    }
+
 
 //    public void accountExists(String accountNumber, Optional<Account> account) {
 //        if (account.isEmpty()) {

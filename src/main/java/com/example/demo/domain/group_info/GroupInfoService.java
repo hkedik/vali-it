@@ -45,4 +45,15 @@ public class GroupInfoService {
         return groupInfo.get();
 
     }
+
+    public GroupInfoResponse findGroupByName(String groupName) {
+        Optional<GroupInfo> byGroupName = groupInfoRepository.findByGroupName(groupName);
+        validationService.enteredGroupExists(byGroupName, groupName);
+        GroupInfo groupInfo = byGroupName.get();
+        GroupInfoResponse response = new GroupInfoResponse();
+        response.setGroupId(groupInfo.getId());
+        response.setGroupName(groupInfo.getGroupName());
+        response.setDescription(groupInfo.getDescription());
+        return response;
+    }
 }
