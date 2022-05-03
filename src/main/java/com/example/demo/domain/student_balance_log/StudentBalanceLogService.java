@@ -23,4 +23,15 @@ public class StudentBalanceLogService {
         studentBalanceLog.setType("i");
         studentBalanceLogRepository.save(studentBalanceLog);
     }
+
+    public void addCreditBalanceLog(StudentBalanceLogRequest logRequest) {
+        StudentBalanceLog studentBalanceLog = new StudentBalanceLog();
+        studentBalanceLog.setStudentBalance(logRequest.getStudentBalance());
+        studentBalanceLog.setExpence(logRequest.getExpense());
+        studentBalanceLog.setDateTime(Instant.now());
+        studentBalanceLog.setAmount(logRequest.getAmount());
+        studentBalanceLog.setType("o");
+        studentBalanceLogRepository.save(studentBalanceLog);
+
+    }
 }

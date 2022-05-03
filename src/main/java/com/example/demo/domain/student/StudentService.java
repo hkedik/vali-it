@@ -1,8 +1,12 @@
 package com.example.demo.domain.student;
 
+import com.example.demo.domain.expence.Expence;
 import com.example.demo.domain.expence.ExpenseRequest;
 import com.example.demo.domain.group_info.GroupInfoService;
+import com.example.demo.domain.student_balance.StudentBalance;
 import com.example.demo.domain.student_balance.StudentBalanceService;
+import com.example.demo.domain.student_balance_log.StudentBalanceLogRequest;
+import com.example.demo.domain.student_balance_log.StudentBalanceLogService;
 import com.example.demo.domain.user.User;
 import com.example.demo.domain.user.UserService;
 import com.example.demo.domain.user_in_group.UserInGroupService;
@@ -43,6 +47,9 @@ public class StudentService {
     @Resource
     private StudentBalanceService studentBalanceService;
 
+    @Resource
+    private StudentBalanceLogService studentBalanceLogService;
+
 
     public void addNewStudent(StudentInfoRequest request) {
         Student student = studentMapper.requestToStudent(request);
@@ -77,7 +84,7 @@ public class StudentService {
         userInGroupService.parentGroupConnection(parentId, registeredStudent.getGroupInfo().getId(), active);
     }
 
-    public void changeStudentBalance(ExpenseRequest request) {
+    public void changeStudentBalance(ExpenseRequest request, Expence expence) {
         List<StudentInfoResponse> students = request.getStudents();
         double counter  = 0;
         List<StudentInfoResponse> selectedStudents = new ArrayList<>();
@@ -93,7 +100,13 @@ public class StudentService {
 
         for (StudentInfoResponse selectedStudent : selectedStudents) {
 
-            studentBalanceService.creditStudentBalance(selectedStudent, amount);
+            StudentBalance studentBalance = studentBalanceService.creditStudentBalance(selectedStudent, amount);
+            StudentBalanceLogRequest logRequest = new StudentBalanceLogRequest();
+            logRequest.setStudentBalance(studentBalance);
+            logRequest.setExpense(expence);
+            logRequest.setAmount(amount);
+
+            studentBalanceLogService.addCreditBalanceLog(logRequest);
 
         }
     }

@@ -3,6 +3,7 @@ package com.example.demo.domain.expence;
 
 import com.example.demo.domain.group_balance.GroupBalanceService;
 import com.example.demo.domain.student.StudentService;
+import com.example.demo.domain.student_balance_log.StudentBalanceLogService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -29,7 +30,7 @@ public class ExpenceService {
         expence.setDateTime(Instant.now());
         expenceRepository.save(expence);
         groupBalanceService.changeGroupBalance(request);
-        studentService.changeStudentBalance(request);
+        studentService.changeStudentBalance(request ,expence);
 
 
     }

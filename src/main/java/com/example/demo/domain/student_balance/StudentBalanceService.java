@@ -67,13 +67,14 @@ public class StudentBalanceService {
     }
 
 
-    public void creditStudentBalance(StudentInfoResponse selectedStudent, BigDecimal amount) {
+    public StudentBalance creditStudentBalance(StudentInfoResponse selectedStudent, BigDecimal amount) {
         Optional<StudentBalance> byStudent_id = studentBalanceRepository.findByStudent_Id(selectedStudent.getStudentId());
         validationService.isValidStudentBalance(byStudent_id);
         StudentBalance studentBalance = byStudent_id.get();
         BigDecimal balance = studentBalance.getBalance();
         studentBalance.setBalance(balance.subtract(amount));
         studentBalanceRepository.save(studentBalance);
+        return studentBalance;
 
     }
 }
