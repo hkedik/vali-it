@@ -65,4 +65,15 @@ public class ContactService {
 //        validationService.isValidContact(contact);
 //        return contactMapper.contactToContactResponse(contact.get());
     }
+
+    public void updateParentContactInfo(ContactRequest request) {
+        User user = userRepository.getById(request.getUserId());
+        Optional<Contact> contact = contactRepository.findById(user.getContact().getId());
+        validationService.isValidContact(contact);
+        Contact updatedContact = contact.get();
+        contactMapper.updateContactFromContactRequest(request, updatedContact);
+
+        contactRepository.save(updatedContact);
+
+    }
 }

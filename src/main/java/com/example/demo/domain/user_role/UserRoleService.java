@@ -31,4 +31,9 @@ public class UserRoleService {
         userRole.setRole(roleRepository.getById(3));
         userRoleRepository.save(userRole);
     }
+
+    public Integer getRole(Integer userId) {
+        UserRole userRole = userRoleRepository.findByUserId(userId);
+        return userRole.getRole().getId();
+    }
 }

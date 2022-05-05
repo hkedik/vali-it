@@ -5,5 +5,5 @@ import lombok.Data;
 @Data
 public class LoginResponse {
     private Integer userId;
-    private Integer userRoleId;
+    private Integer roleId;
 }

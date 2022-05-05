@@ -1,5 +1,7 @@
 package com.example.demo.service.parent;
 
+import com.example.demo.domain.contact.ContactRequest;
+import com.example.demo.domain.contact.ContactService;
 import com.example.demo.domain.group_balance.GroupBalanceResponse;
 import com.example.demo.domain.group_balance.GroupBalanceService;
 import com.example.demo.domain.group_info.GroupInfoResponse;
@@ -29,6 +31,11 @@ public class ParentService {
     @Resource
     private GroupInfoService groupInfoService;
 
+    @Resource
+    private ContactService contactService;
+
+
+
     public void addNewStudent(StudentInfoRequest request) {
         studentService.addNewStudent(request);
     }
@@ -43,5 +50,9 @@ public class ParentService {
 
     public GroupInfoResponse findGroupByName(String groupName) {
             return groupInfoService.findGroupByName(groupName);
+    }
+
+    public void updateParentContactInfo(ContactRequest request) {
+        contactService.updateParentContactInfo(request);
     }
 }

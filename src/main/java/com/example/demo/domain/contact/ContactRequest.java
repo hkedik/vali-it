@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 @Data
 public class ContactRequest implements Serializable {
-    private final Integer id;
+    private final Integer userId;
     private final String contactFirstName;
     private final String contactLastName;
     private final String contactEmail;

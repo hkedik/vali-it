@@ -21,8 +21,8 @@ public class LoginService {
         User validUser = userService.getValidUser(userName, password);
         UserRole userRole = userRoleService.getUserRole(validUser);
         LoginResponse loginResponse = new LoginResponse();
+        loginResponse.setRoleId(userRole.getRole().getId());
         loginResponse.setUserId(validUser.getId());
-        loginResponse.setUserRoleId(userRole.getRole().getId());
         return loginResponse;
     }
 }
