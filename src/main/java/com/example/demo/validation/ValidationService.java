@@ -82,6 +82,13 @@ public class ValidationService {
         }
     }
 
+    public void studentExist(Optional<UserStudent> userStudent) {
+        if (userStudent.isEmpty()) {
+            throw new BusinessException("Student is not found", "Add new kid");
+        }
+
+    }
+
 
 //    public void accountExists(String accountNumber, Optional<Account> account) {
 //        if (account.isEmpty()) {

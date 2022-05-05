@@ -6,13 +6,16 @@ import com.example.demo.domain.group_info.GroupInfoRequest;
 import com.example.demo.domain.group_info.GroupInfoResponse;
 import com.example.demo.domain.group_info.GroupInfoService;
 import com.example.demo.domain.student.StudentInfoRequest;
+import com.example.demo.domain.student.StudentInfoResponse;
 import com.example.demo.domain.student_balance.StudentBalanceResponse;
+import com.example.demo.domain.user_student.UserStudentService;
 import io.swagger.v3.oas.annotations.Operation;
 
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.net.CacheRequest;
+import java.util.List;
 
 @RestController
 @RequestMapping("/user")
@@ -49,5 +52,11 @@ public class ParentController {
     @Operation(summary = "Update parent contact info")
     public void updateParentContactInfo(@RequestBody ContactRequest request) {
         parentService.updateParentContactInfo(request);
+    }
+
+    @GetMapping("/student-by-user-id")
+    @Operation(summary = "Find all parent students")
+    public List<StudentInfoResponse> findStudentsByUserId(@RequestParam Integer userId) {
+        return parentService.findStudentsByUserId(userId);
     }
 }

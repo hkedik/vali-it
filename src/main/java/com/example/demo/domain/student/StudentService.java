@@ -10,6 +10,7 @@ import com.example.demo.domain.student_balance_log.StudentBalanceLogService;
 import com.example.demo.domain.user.User;
 import com.example.demo.domain.user.UserService;
 import com.example.demo.domain.user_in_group.UserInGroupService;
+import com.example.demo.domain.user_student.UserStudent;
 import com.example.demo.domain.user_student.UserStudentService;
 import com.example.demo.validation.ValidationService;
 import org.springframework.stereotype.Service;
@@ -99,15 +100,22 @@ public class StudentService {
         amount.divide(BigDecimal.valueOf(counter));
 
         for (StudentInfoResponse selectedStudent : selectedStudents) {
-
             StudentBalance studentBalance = studentBalanceService.creditStudentBalance(selectedStudent, amount);
             StudentBalanceLogRequest logRequest = new StudentBalanceLogRequest();
             logRequest.setStudentBalance(studentBalance);
             logRequest.setExpense(expence);
             logRequest.setAmount(amount);
-
             studentBalanceLogService.addCreditBalanceLog(logRequest);
-
         }
     }
+
+//    public List<StudentInfoResponse> findStudentList(List<UserStudent> userStudents) {
+//        List<StudentInfoResponse> responses = new ArrayList<>();
+//        for (UserStudent userStudent : userStudents) {
+//            Optional<Student> student = studentRepository.findById(userStudent.getStudent().getId());
+//            validationService.isValidStudent(student, userStudent.getStudent().getId());
+//            responses.add(studentMapper.studentToStudentInfoResponse(student.get()));
+//        }
+//        return responses;
+//    }
 }

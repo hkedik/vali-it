@@ -12,9 +12,11 @@ import com.example.demo.domain.student.StudentService;
 
 import com.example.demo.domain.student_balance.StudentBalanceResponse;
 import com.example.demo.domain.student_balance.StudentBalanceService;
+import com.example.demo.domain.user_student.UserStudentService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 public class ParentService {
@@ -33,6 +35,9 @@ public class ParentService {
 
     @Resource
     private ContactService contactService;
+
+    @Resource
+    private UserStudentService userStudentService;
 
 
 
@@ -55,4 +60,9 @@ public class ParentService {
     public void updateParentContactInfo(ContactRequest request) {
         contactService.updateParentContactInfo(request);
     }
+
+    public List<StudentInfoResponse> findStudentsByUserId(Integer userId) {
+        return userStudentService.findStudentsByUserId(userId);
+    }
+
 }

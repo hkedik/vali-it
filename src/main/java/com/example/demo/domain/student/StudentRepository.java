@@ -12,5 +12,7 @@ public interface StudentRepository extends JpaRepository<Student, Integer> {
     @Query("select s from Student s where s.groupInfo.id = ?1 and s.active = false")
     List<Student> findRegisteredStudents(Integer id);
 
+
+
 }
 
