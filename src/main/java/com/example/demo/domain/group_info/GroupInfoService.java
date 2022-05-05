@@ -29,14 +29,14 @@ public class GroupInfoService {
     private GroupBalanceService groupBalanceService;
 
 
-    public void addNewGroup(GroupInfoRequest request) {
+    public Integer addNewGroup(GroupInfoRequest request) {
         Optional<GroupInfo> group = groupInfoRepository.findByGroupName(request.getGroupName());
         validationService.groupExists(group);
         GroupInfo newGroup = groupInfoMapper.requestToNewGroup(request);
         newGroup.setDateTime(Instant.now());
         GroupInfo savedGroup = groupInfoRepository.save(newGroup);
-        userInGroupService.newGroupModerator(request.getUserId(), savedGroup);
         groupBalanceService.addNewGroupBalance(savedGroup);
+        return userInGroupService.newGroupModerator(request.getUserId(), savedGroup);
     }
 
     public GroupInfo getGroupById(Integer groupInfoId) {

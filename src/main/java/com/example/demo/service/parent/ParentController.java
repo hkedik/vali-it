@@ -59,4 +59,5 @@ public class ParentController {
     public List<StudentInfoResponse> findStudentsByUserId(@RequestParam Integer userId) {
         return parentService.findStudentsByUserId(userId);
     }
+
 }

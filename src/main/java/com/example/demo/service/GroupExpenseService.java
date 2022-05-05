@@ -25,8 +25,8 @@ public class GroupExpenseService {
        return userService.addNewUser(request);
     }
 
-    public void addNewGroup(GroupInfoRequest request) {
-        groupInfoService.addNewGroup(request);
+    public Integer addNewGroup(GroupInfoRequest request) {
+       return groupInfoService.addNewGroup(request);
     }
 
 }

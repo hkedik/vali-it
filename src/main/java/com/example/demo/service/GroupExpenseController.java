@@ -28,8 +28,8 @@ public class GroupExpenseController {
 
     @PostMapping("/new-group")
     @Operation(summary = "Add new group")
-    public void addGroup(@RequestBody GroupInfoRequest request) {
-        groupExpenseService.addNewGroup(request);
+    public Integer addGroup(@RequestBody GroupInfoRequest request)  {
+        return groupExpenseService.addNewGroup(request);
     }
 
 

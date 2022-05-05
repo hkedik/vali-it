@@ -19,10 +19,11 @@ public class UserRoleService {
         return userRoleRepository.findByUserId(validUser.getId());
     }
 
-    public void userToModerator(Integer userId) {
+    public Integer userToModerator(Integer userId) {
         UserRole toModeratorUser = userRoleRepository.findByUserId(userId);
         toModeratorUser.setRole(roleRepository.getById(4));
         userRoleRepository.save(toModeratorUser);
+        return toModeratorUser.getRole().getId();
     }
 
     public void addNewUserRole(User user) {

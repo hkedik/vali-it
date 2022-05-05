@@ -17,7 +17,7 @@ public class UserInGroupService {
     @Resource
     private UserInGroupRepository userInGroupRepository;
 
-    public void newGroupModerator(Integer userId, GroupInfo groupInfo) {
+    public Integer newGroupModerator(Integer userId, GroupInfo groupInfo) {
         UserInGroup userInGroup = new UserInGroup();
         userInGroup.setUserId(userId);
         userInGroup.setGroupInfoId(groupInfo.getId());
@@ -25,7 +25,7 @@ public class UserInGroupService {
         userInGroup.setIsActive(true);
         userInGroup.setDateActivated(LocalDate.now());
         userInGroupRepository.save(userInGroup);
-        userRoleService.userToModerator(userId);
+        return userRoleService.userToModerator(userId);
     }
 
     public void parentGroupConnection(Integer parentId, Integer groupId, Boolean active) {
