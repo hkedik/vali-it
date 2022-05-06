@@ -60,7 +60,7 @@ public class ModeratorService {
         return contactService.getContactInfoByStudentId(studentId);
     }
 
-    public void removeStudentFromGroup(Integer id) {
-        studentService.removeStudentFromGroup(id);
+    public void removeStudentFromGroup(Integer id, Boolean active) {
+        studentService.removeStudentFromGroup(id, active);
     }
 }

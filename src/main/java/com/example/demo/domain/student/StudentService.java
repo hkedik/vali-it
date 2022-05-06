@@ -118,14 +118,14 @@ public class StudentService {
         }
     }
 
-    public void removeStudentFromGroup(Integer id) {
+    public void removeStudentFromGroup(Integer id, Boolean active) {
         Optional<Student> student = studentRepository.findById(id);
         validationService.isValidStudent(student, id);
         Student registeredStudent = student.get();
-        registeredStudent.setActive(false);
+        registeredStudent.setActive(active);
         studentRepository.save(registeredStudent);
         Integer parentId = userStudentService.getParentId(id);
-        userInGroupService.parentGroupConnection(parentId, registeredStudent.getGroupInfo().getId());
+        userInGroupService.removeParentGroupConnection(parentId, registeredStudent.getGroupInfo().getId(), active);
     }
 
 //    public List<StudentInfoResponse> findStudentList(List<UserStudent> userStudents) {

@@ -26,7 +26,6 @@ public class GroupExpenseController {
        return groupExpenseService.addNewUser(request);
     }
 
-
     @PostMapping("/new-group")
     @Operation(summary = "Add new group")
     public Integer addGroup(@RequestBody GroupInfoRequest request)  {

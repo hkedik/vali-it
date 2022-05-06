@@ -1,7 +1,6 @@
 package com.example.demo.domain.user_in_group;
 
 import com.example.demo.domain.group_info.GroupInfo;
-import com.example.demo.domain.user_role.UserRoleRepository;
 import com.example.demo.domain.user_role.UserRoleService;
 import com.example.demo.validation.ValidationService;
 import org.springframework.stereotype.Service;
@@ -9,7 +8,6 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserInGroupService {
@@ -40,12 +38,18 @@ public class UserInGroupService {
         userInGroup.setUserId(parentId);
         userInGroup.setGroupInfoId(groupId);
         userInGroup.setDateActivated(LocalDate.now());
-        userInGroup.setIsActive(false);
+        userInGroup.setIsActive(true);
         userInGroupRepository.save(userInGroup);
     }
 
     public List<UserInGroup> findGroupByUserId(Integer userId) {
-        List<UserInGroup> userInGroups = userInGroupRepository.findByUserId(userId);
+        List<UserInGroup> userInGroups = userInGroupRepository.findByUserIdList(userId);
         return userInGroups;
+    }
+
+    public void removeParentGroupConnection(Integer parentId, Integer id, Boolean active) {
+        UserInGroup group = userInGroupRepository.findByUserId(parentId);
+        group.setIsActive(active);
+        userInGroupRepository.save(group);
     }
 }
