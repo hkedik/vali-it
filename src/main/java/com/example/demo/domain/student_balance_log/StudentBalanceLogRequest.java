@@ -9,7 +9,6 @@ import java.math.BigDecimal;
 @Data
 public class StudentBalanceLogRequest {
 
-
     private Expence expense;
     private StudentBalance studentBalance;
     private BigDecimal amount;

@@ -7,6 +7,8 @@ import javax.annotation.Resource;
 import java.math.BigDecimal;
 import java.time.Instant;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class StudentBalanceLogService {
@@ -33,5 +35,25 @@ public class StudentBalanceLogService {
         studentBalanceLog.setType("o");
         studentBalanceLogRepository.save(studentBalanceLog);
 
+    }
+
+    public List<StudentBalanceLogResponse> findStudentBalanceLogsByStudentId(Integer studentId) {
+        List<StudentBalanceLog> logs = studentBalanceLogRepository.findByStudentId(studentId);
+        List<StudentBalanceLogResponse> responses = new ArrayList<>();
+        for (StudentBalanceLog log : logs) {
+            StudentBalanceLogResponse response = new StudentBalanceLogResponse();
+            response.setAmount(log.getAmount());
+            response.setDateTime(log.getDateTime());
+            response.setType(log.getType());
+            if (response.getType().equals("i")) {
+                response.setTransferName("Deposit");
+                response.setDescription("Added funds");
+            } else if (response.getType().equals("o")) {
+                response.setTransferName(log.getExpence().getName());
+                response.setDescription(log.getExpence().getDescription());
+            }
+            responses.add(response);
+        }
+        return responses;
     }
 }

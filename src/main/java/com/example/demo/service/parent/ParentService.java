@@ -12,6 +12,8 @@ import com.example.demo.domain.student.StudentService;
 
 import com.example.demo.domain.student_balance.StudentBalanceResponse;
 import com.example.demo.domain.student_balance.StudentBalanceService;
+import com.example.demo.domain.student_balance_log.StudentBalanceLogResponse;
+import com.example.demo.domain.student_balance_log.StudentBalanceLogService;
 import com.example.demo.domain.user_student.UserStudentService;
 import org.springframework.stereotype.Service;
 
@@ -39,6 +41,9 @@ public class ParentService {
     @Resource
     private UserStudentService userStudentService;
 
+    @Resource
+    private StudentBalanceLogService studentBalanceLogService;
+
 
 
     public void addNewStudent(StudentInfoRequest request) {
@@ -65,4 +70,9 @@ public class ParentService {
         return userStudentService.findStudentsByUserId(userId);
     }
 
+    public List<StudentBalanceLogResponse> findStudentBalanceLogsByStudentId(Integer studentId) {
+
+
+        return studentBalanceLogService.findStudentBalanceLogsByStudentId(studentId);
+    }
 }

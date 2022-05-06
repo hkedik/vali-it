@@ -8,6 +8,7 @@ import com.example.demo.domain.group_info.GroupInfoService;
 import com.example.demo.domain.student.StudentInfoRequest;
 import com.example.demo.domain.student.StudentInfoResponse;
 import com.example.demo.domain.student_balance.StudentBalanceResponse;
+import com.example.demo.domain.student_balance_log.StudentBalanceLogResponse;
 import com.example.demo.domain.user_student.UserStudentService;
 import io.swagger.v3.oas.annotations.Operation;
 
@@ -59,5 +60,12 @@ public class ParentController {
     public List<StudentInfoResponse> findStudentsByUserId(@RequestParam Integer userId) {
         return parentService.findStudentsByUserId(userId);
     }
+
+    @GetMapping("/student-balance-log/student-id")
+    @Operation(summary = "Find student logs by student id")
+    public List<StudentBalanceLogResponse> findStudentBalanceLogsByStudentId(@RequestParam Integer studentId) {
+        return parentService.findStudentBalanceLogsByStudentId(studentId);
+    }
+
 
 }
