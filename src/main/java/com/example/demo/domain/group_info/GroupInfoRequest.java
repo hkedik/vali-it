@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 @Data
 public class GroupInfoRequest implements Serializable {
-    private final Integer userId;
-    private final String groupName;
-    private final String description;
+    private Integer userId;
+    private String groupName;
+    private String description;
 }
