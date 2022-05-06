@@ -1,7 +1,6 @@
 package com.example.demo.domain.user_in_group;
 
 import com.example.demo.domain.group_info.GroupInfo;
-import com.example.demo.domain.user_role.UserRoleRepository;
 import com.example.demo.domain.user_role.UserRoleService;
 import com.example.demo.validation.ValidationService;
 import org.springframework.stereotype.Service;
@@ -9,7 +8,6 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserInGroupService {
@@ -34,18 +32,23 @@ public class UserInGroupService {
         return userRoleService.userToModerator(userId);
     }
 
-    public void parentGroupConnection(Integer parentId, Integer groupId) {
+    public void deactivateParentGroupConnection(Integer parentId) {
 //    TODO: kahe lapsega vanema validatsioon
-        UserInGroup userInGroup = new UserInGroup();
-        userInGroup.setUserId(parentId);
-        userInGroup.setGroupInfoId(groupId);
-        userInGroup.setDateActivated(LocalDate.now());
-        userInGroup.setIsActive(false);
-        userInGroupRepository.save(userInGroup);
+        UserInGroup connection = userInGroupRepository.findUserConnectionByUserId(parentId);
+        connection.setIsActive(false);
+        connection.setDateActivated(LocalDate.now());
+        userInGroupRepository.save(connection);
     }
 
     public List<UserInGroup> findGroupByUserId(Integer userId) {
         List<UserInGroup> userInGroups = userInGroupRepository.findByUserId(userId);
         return userInGroups;
+    }
+
+    public void activateParentGroupConnection(Integer parentId) {
+        UserInGroup connection = userInGroupRepository.findUserConnectionByUserId(parentId);
+        connection.setIsActive(true);
+        connection.setDateActivated(LocalDate.now());
+        userInGroupRepository.save(connection);
     }
 }

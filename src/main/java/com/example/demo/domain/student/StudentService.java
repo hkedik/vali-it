@@ -10,7 +10,6 @@ import com.example.demo.domain.student_balance_log.StudentBalanceLogService;
 import com.example.demo.domain.user.User;
 import com.example.demo.domain.user.UserService;
 import com.example.demo.domain.user_in_group.UserInGroupService;
-import com.example.demo.domain.user_student.UserStudent;
 import com.example.demo.domain.user_student.UserStudentService;
 import com.example.demo.validation.ValidationService;
 import org.springframework.stereotype.Service;
@@ -91,7 +90,7 @@ public class StudentService {
         registeredStudent.setActive(true);
         studentRepository.save(registeredStudent);
         Integer parentId = userStudentService.getParentId(id);
-        userInGroupService.parentGroupConnection(parentId, registeredStudent.getGroupInfo().getId());
+        userInGroupService.activateParentGroupConnection(parentId);
     }
 
     public void changeStudentBalance(ExpenseRequest request, Expence expence) {
@@ -125,7 +124,7 @@ public class StudentService {
         registeredStudent.setActive(false);
         studentRepository.save(registeredStudent);
         Integer parentId = userStudentService.getParentId(id);
-        userInGroupService.parentGroupConnection(parentId, registeredStudent.getGroupInfo().getId());
+        userInGroupService.deactivateParentGroupConnection(parentId);
     }
 
 //    public List<StudentInfoResponse> findStudentList(List<UserStudent> userStudents) {
