@@ -71,8 +71,6 @@ public class ParentService {
     }
 
     public List<StudentBalanceLogResponse> findStudentBalanceLogsByStudentId(Integer studentId) {
-
-
         return studentBalanceLogService.findStudentBalanceLogsByStudentId(studentId);
     }
 }

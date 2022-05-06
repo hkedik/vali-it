@@ -1,6 +1,10 @@
 package com.example.demo.domain.user_student;
 
+import com.example.demo.domain.group_balance.GroupBalance;
+import com.example.demo.domain.group_balance.GroupBalanceService;
 import com.example.demo.domain.student.*;
+import com.example.demo.domain.student_balance.StudentBalance;
+import com.example.demo.domain.student_balance.StudentBalanceService;
 import com.example.demo.domain.user.User;
 import com.example.demo.validation.ValidationService;
 import org.springframework.stereotype.Service;
@@ -25,6 +29,12 @@ public class UserStudentService {
     @Resource
     private StudentMapper studentMapper;
 
+    @Resource
+    private StudentBalanceService studentBalanceService;
+
+    @Resource
+    private GroupBalanceService groupBalanceService;
+
 
     public void addStudentUserRelationship(Student student, User user) {
         UserStudent userStudent = new UserStudent();
@@ -46,7 +56,12 @@ public class UserStudentService {
         for (UserStudent userStudent : userStudents) {
             Optional<Student> student = studentRepository.findById(userStudent.getStudent().getId());
             validationService.isValidStudent(student, userStudent.getStudent().getId());
-            responses.add(studentMapper.studentToStudentInfoResponse(student.get()));
+            StudentInfoResponse response = studentMapper.studentToStudentInfoResponse(student.get());
+            StudentBalance balance = studentBalanceService.findStudentBalanceByStudentId(userStudent.getStudent().getId());
+            response.setStudentBalanceAmount(balance.getBalance());
+            GroupBalance groupBalance = groupBalanceService.findGroupBalanceByGroupId(student.get().getGroupInfo().getId());
+            response.setGroupBalanceAmount(groupBalance.getBalance());
+            responses.add(response);
     }
         return responses ;
 }

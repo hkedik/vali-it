@@ -77,4 +77,10 @@ public class StudentBalanceService {
         return studentBalance;
 
     }
+
+    public StudentBalance findStudentBalanceByStudentId(Integer id) {
+        Optional<StudentBalance> balance = studentBalanceRepository.findByStudent_Id(id);
+        validationService.isValidStudentBalance(balance);
+        return balance.get();
+    }
 }
