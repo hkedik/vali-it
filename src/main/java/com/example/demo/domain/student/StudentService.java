@@ -65,8 +65,14 @@ public class StudentService {
 
     public List<StudentInfoResponse> allStudents(Integer groupId) {
         List<Student> all = studentRepository.findByGroupInfo_Id(groupId);
-        return studentMapper.studentToStudentInfoResponse(all);
-
+        List<StudentInfoResponse> responses = new ArrayList<>();
+        for (Student student : all) {
+            StudentInfoResponse response = studentMapper.studentToStudentInfoResponse(student);
+            StudentBalance balance = studentBalanceService.findStudentBalanceByStudentId(student.getId());
+            response.setStudentBalanceAmount(balance.getBalance());
+            responses.add(response);
+        }
+        return responses;
     }
 
     public List<StudentInfoResponse> allRegisteredStudents(Integer groupId) {
