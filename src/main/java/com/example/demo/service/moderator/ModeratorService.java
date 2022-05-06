@@ -29,8 +29,8 @@ public class ModeratorService {
     ContactService contactService;
 
 
-    public List<StudentInfoResponse> allStudents(Integer groupId) {
-        return studentService.allStudents(groupId);
+    public List<StudentInfoResponse> allYourGroupStudents(Integer groupId) {
+        return studentService.allYourGroupStudents(groupId);
 
     }
 

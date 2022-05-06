@@ -63,14 +63,17 @@ public class StudentService {
     }
 
 
-    public List<StudentInfoResponse> allStudents(Integer groupId) {
+    public List<StudentInfoResponse> allYourGroupStudents(Integer groupId) {
         List<Student> all = studentRepository.findByGroupInfo_Id(groupId);
         List<StudentInfoResponse> responses = new ArrayList<>();
         for (Student student : all) {
             StudentInfoResponse response = studentMapper.studentToStudentInfoResponse(student);
             StudentBalance balance = studentBalanceService.findStudentBalanceByStudentId(student.getId());
             response.setStudentBalanceAmount(balance.getBalance());
-            responses.add(response);
+            if (response.getActive().equals(true)) {
+                responses.add(response);
+            }
+
         }
         return responses;
     }

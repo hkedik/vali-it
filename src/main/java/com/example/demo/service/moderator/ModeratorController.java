@@ -21,8 +21,8 @@ public class ModeratorController {
 
     @GetMapping("/all-students")
     @Operation(summary = "Get all students from your group")
-    public List<StudentInfoResponse> allStudents(@RequestParam Integer groupId) {
-        return moderatorService.allStudents(groupId);
+    public List<StudentInfoResponse> allYourGroupStudents(@RequestParam Integer groupId) {
+        return moderatorService.allYourGroupStudents(groupId);
     }
 
     @GetMapping("/all-registered-students")
