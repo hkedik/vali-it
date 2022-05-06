@@ -75,7 +75,6 @@ public class StudentBalanceService {
         studentBalance.setBalance(balance.subtract(amount));
         studentBalanceRepository.save(studentBalance);
         return studentBalance;
-
     }
 
     public StudentBalance findStudentBalanceByStudentId(Integer id) {

@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 
 import com.example.demo.domain.group_info.GroupInfoRequest;
+import com.example.demo.domain.group_info.GroupInfoResponse;
 import com.example.demo.domain.group_info.GroupInfoService;
 import com.example.demo.domain.user.NewUserInfoRequest;
 import com.example.demo.domain.user.UserService;
@@ -9,6 +10,7 @@ import com.example.demo.service.login.LoginResponse;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 public class GroupExpenseService {
@@ -29,4 +31,7 @@ public class GroupExpenseService {
        return groupInfoService.addNewGroup(request);
     }
 
+    public List<GroupInfoResponse> findGroupByUserId(Integer userId) {
+        return groupInfoService.findGroupByUserId(userId);
+    }
 }

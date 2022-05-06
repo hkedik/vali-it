@@ -3,10 +3,13 @@ package com.example.demo.domain.user_in_group;
 import com.example.demo.domain.group_info.GroupInfo;
 import com.example.demo.domain.user_role.UserRoleRepository;
 import com.example.demo.domain.user_role.UserRoleService;
+import com.example.demo.validation.ValidationService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserInGroupService {
@@ -16,6 +19,9 @@ public class UserInGroupService {
 
     @Resource
     private UserInGroupRepository userInGroupRepository;
+
+    @Resource
+    private ValidationService validationService;
 
     public Integer newGroupModerator(Integer userId, GroupInfo groupInfo) {
         UserInGroup userInGroup = new UserInGroup();
@@ -36,5 +42,10 @@ public class UserInGroupService {
         userInGroup.setDateActivated(LocalDate.now());
         userInGroup.setIsActive(active);
         userInGroupRepository.save(userInGroup);
+    }
+
+    public List<UserInGroup> findGroupByUserId(Integer userId) {
+        List<UserInGroup> userInGroups = userInGroupRepository.findByUserId(userId);
+        return userInGroups;
     }
 }

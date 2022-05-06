@@ -6,6 +6,7 @@ import com.example.demo.domain.group_info.GroupInfo;
 import com.example.demo.domain.student.Student;
 import com.example.demo.domain.student_balance.StudentBalance;
 import com.example.demo.domain.user.User;
+import com.example.demo.domain.user_in_group.UserInGroup;
 import com.example.demo.domain.user_student.UserStudent;
 import com.example.demo.infrastructure.exception.BusinessException;
 import com.example.demo.infrastructure.exception.DataNotFoundException;
@@ -87,6 +88,12 @@ public class ValidationService {
             throw new BusinessException("Student is not found", "Add new kid");
         }
 
+    }
+
+    public void isValidUserGroup(Optional<UserInGroup> group) {
+        if (group.isEmpty()) {
+            throw new DataNotFoundException("Group is not found", "Control info");
+        }
     }
 
 
