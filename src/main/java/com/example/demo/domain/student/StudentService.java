@@ -81,14 +81,14 @@ public class StudentService {
         return studentMapper.studentToStudentInfoResponse(registeredStudents);
     }
 
-    public void addStudentToGroup(Integer studentId, Boolean active) {
-        Optional<Student> student = studentRepository.findById(studentId);
-        validationService.isValidStudent(student, studentId);
+    public void addStudentToGroup(Integer id) {
+        Optional<Student> student = studentRepository.findById(id);
+        validationService.isValidStudent(student, id);
         Student registeredStudent = student.get();
-        registeredStudent.setActive(active);
+        registeredStudent.setActive(true);
         studentRepository.save(registeredStudent);
-        Integer parentId = userStudentService.getParentId(studentId);
-        userInGroupService.parentGroupConnection(parentId, registeredStudent.getGroupInfo().getId(), active);
+        Integer parentId = userStudentService.getParentId(id);
+        userInGroupService.parentGroupConnection(parentId, registeredStudent.getGroupInfo().getId());
     }
 
     public void changeStudentBalance(ExpenseRequest request, Expence expence) {
@@ -113,6 +113,16 @@ public class StudentService {
             logRequest.setAmount(amount);
             studentBalanceLogService.addCreditBalanceLog(logRequest);
         }
+    }
+
+    public void removeStudentFromGroup(Integer id) {
+        Optional<Student> student = studentRepository.findById(id);
+        validationService.isValidStudent(student, id);
+        Student registeredStudent = student.get();
+        registeredStudent.setActive(false);
+        studentRepository.save(registeredStudent);
+        Integer parentId = userStudentService.getParentId(id);
+        userInGroupService.parentGroupConnection(parentId, registeredStudent.getGroupInfo().getId());
     }
 
 //    public List<StudentInfoResponse> findStudentList(List<UserStudent> userStudents) {

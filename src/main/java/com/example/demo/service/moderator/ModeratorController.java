@@ -31,10 +31,16 @@ public class ModeratorController {
         return moderatorService.allRegisteredStudents(groupId);
     }
 
-    @PutMapping("/student-activation")
+    @GetMapping("/student-activation")
     @Operation(summary = "Add student to group")
-    public void addStudentToGroup(@RequestParam Integer studentId, @RequestParam Boolean active) {
-        moderatorService.addStudentToGroup(studentId, active);
+    public void addStudentToGroup(@RequestParam Integer id) {
+        moderatorService.addStudentToGroup(id);
+    }
+
+    @GetMapping("/student-deactivation")
+    @Operation(summary = "Remove student from group")
+    public void removeStudentFromGroup(@RequestParam Integer id) {
+        moderatorService.removeStudentFromGroup(id);
     }
 
     @PutMapping("/money-deposit")

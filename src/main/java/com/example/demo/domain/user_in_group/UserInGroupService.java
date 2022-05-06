@@ -34,13 +34,13 @@ public class UserInGroupService {
         return userRoleService.userToModerator(userId);
     }
 
-    public void parentGroupConnection(Integer parentId, Integer groupId, Boolean active) {
+    public void parentGroupConnection(Integer parentId, Integer groupId) {
 //    TODO: kahe lapsega vanema validatsioon
         UserInGroup userInGroup = new UserInGroup();
         userInGroup.setUserId(parentId);
         userInGroup.setGroupInfoId(groupId);
         userInGroup.setDateActivated(LocalDate.now());
-        userInGroup.setIsActive(active);
+        userInGroup.setIsActive(false);
         userInGroupRepository.save(userInGroup);
     }
 

@@ -38,8 +38,8 @@ public class ModeratorService {
         return studentService.allRegisteredStudents(groupId);
     }
 
-    public void addStudentToGroup(Integer studentId, Boolean active) {
-        studentService.addStudentToGroup(studentId, active);
+    public void addStudentToGroup(Integer id) {
+        studentService.addStudentToGroup(id);
     }
 
 
@@ -58,5 +58,9 @@ public class ModeratorService {
 
     public ContactResponse getContactInfoByStudentId(Integer studentId) {
         return contactService.getContactInfoByStudentId(studentId);
+    }
+
+    public void removeStudentFromGroup(Integer id) {
+        studentService.removeStudentFromGroup(id);
     }
 }
