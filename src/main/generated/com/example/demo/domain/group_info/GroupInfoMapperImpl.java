@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-05-06T14:53:20+0300",
+    date = "2022-05-06T15:00:01+0300",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 17.0.3 (Amazon.com Inc.)"
 )
 @Component
@@ -31,15 +31,10 @@ public class GroupInfoMapperImpl implements GroupInfoMapper {
             return null;
         }
 
-        String groupName = null;
-        String description = null;
+        GroupInfoRequest groupInfoRequest = new GroupInfoRequest();
 
-        groupName = groupInfo.getGroupName();
-        description = groupInfo.getDescription();
-
-        Integer userId = null;
-
-        GroupInfoRequest groupInfoRequest = new GroupInfoRequest( userId, groupName, description );
+        groupInfoRequest.setGroupName( groupInfo.getGroupName() );
+        groupInfoRequest.setDescription( groupInfo.getDescription() );
 
         return groupInfoRequest;
     }
