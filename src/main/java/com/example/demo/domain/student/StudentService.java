@@ -58,6 +58,7 @@ public class StudentService {
         User user = userService.getValidUser(request.getParentUserId());
         userStudentService.addStudentUserRelationship(student, user);
         studentBalanceService.addNewStudentBalance(student,student.getGroupInfo().getId());
+        userInGroupService.addNewParentGroupConnection(request);
 
     }
 

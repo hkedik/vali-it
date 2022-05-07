@@ -1,6 +1,7 @@
 package com.example.demo.domain.user_in_group;
 
 import com.example.demo.domain.group_info.GroupInfo;
+import com.example.demo.domain.student.StudentInfoRequest;
 import com.example.demo.domain.user_role.UserRoleService;
 import com.example.demo.validation.ValidationService;
 import org.springframework.stereotype.Service;
@@ -50,5 +51,15 @@ public class UserInGroupService {
         connection.setIsActive(true);
         connection.setDateActivated(LocalDate.now());
         userInGroupRepository.save(connection);
+    }
+
+    public void addNewParentGroupConnection(StudentInfoRequest request) {
+        UserInGroup parentInGroup = new UserInGroup();
+        parentInGroup.setGroupInfoId(request.getGroupInfoId());
+        parentInGroup.setUserId(request.getParentUserId());
+        parentInGroup.setDateActivated(LocalDate.now());
+        parentInGroup.setIsActive(false);
+        parentInGroup.setIsModerator(false);
+        userInGroupRepository.save(parentInGroup);
     }
 }
