@@ -2,12 +2,17 @@ package com.example.demo.domain.expence;
 
 import com.example.demo.domain.group_balance.GroupBalance;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.time.Instant;
 
 @Data
 @Entity
+@Getter
+@Setter
 @Table(name = "expence")
 public class Expence {
     @Id
@@ -26,7 +31,7 @@ public class Expence {
     private String description;
 
     @Column(name = "amount", nullable = false)
-    private Integer amount;
+    private BigDecimal amount;
 
     @Column(name = "date_time", nullable = false)
     private Instant dateTime;
@@ -63,11 +68,11 @@ public class Expence {
         this.description = description;
     }
 
-    public Integer getAmount() {
+    public BigDecimal getAmount() {
         return amount;
     }
 
-    public void setAmount(Integer amount) {
+    public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
 

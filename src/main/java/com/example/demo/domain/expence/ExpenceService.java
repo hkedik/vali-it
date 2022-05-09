@@ -1,6 +1,8 @@
 package com.example.demo.domain.expence;
 
 
+import com.example.demo.domain.group_balance.GroupBalanceRepository;
+import com.example.demo.domain.group_balance.GroupBalanceResponse;
 import com.example.demo.domain.group_balance.GroupBalanceService;
 import com.example.demo.domain.student.StudentService;
 import com.example.demo.domain.student_balance_log.StudentBalanceLogService;
@@ -26,7 +28,11 @@ public class ExpenceService {
 
     public void addNewExpense(ExpenseRequest request) {
 
-        Expence expence = expenceMapper.expenceRequestToExpence(request);
+        Expence expence = new Expence();
+        expence.setGroupBalance(groupBalanceService.findGroupBalanceByGroupId(request.getGroupId()));
+        expence.setName(request.getName());
+        expence.setDescription(request.getDescription());
+        expence.setAmount(request.getAmount());
         expence.setDateTime(Instant.now());
         expenceRepository.save(expence);
         groupBalanceService.changeGroupBalance(request);

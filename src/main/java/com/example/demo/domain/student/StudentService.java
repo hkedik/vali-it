@@ -2,6 +2,7 @@ package com.example.demo.domain.student;
 
 import com.example.demo.domain.expence.Expence;
 import com.example.demo.domain.expence.ExpenseRequest;
+import com.example.demo.domain.expence.NewExpenseRequest;
 import com.example.demo.domain.group_info.GroupInfoService;
 import com.example.demo.domain.student_balance.StudentBalance;
 import com.example.demo.domain.student_balance.StudentBalanceService;
@@ -96,24 +97,26 @@ public class StudentService {
 
     public void changeStudentBalance(ExpenseRequest request, Expence expence) {
         List<StudentInfoResponse> students = request.getStudents();
-        double counter  = 0;
-        List<StudentInfoResponse> selectedStudents = new ArrayList<>();
-        for (StudentInfoResponse student : students) {
-            if(student.getSelected()) {
-                selectedStudents.add(student);
-                counter++;
-            }
-        }
+        double numberOfStudents = students.size();
+
+//        double counter  = 0;
+//        List<StudentInfoResponse> selectedStudents = new ArrayList<>();
+//        for (StudentInfoResponse student : students) {
+//            if(student.getSelected()) {
+//                selectedStudents.add(student);
+//                counter++;
+//            }
+//        }
 
         BigDecimal amount = request.getAmount();
-        amount.divide(BigDecimal.valueOf(counter));
+        BigDecimal amountPerStudent = amount.divide(BigDecimal.valueOf(numberOfStudents));
 
-        for (StudentInfoResponse selectedStudent : selectedStudents) {
-            StudentBalance studentBalance = studentBalanceService.creditStudentBalance(selectedStudent, amount);
+        for (StudentInfoResponse student : students) {
+            StudentBalance studentBalance = studentBalanceService.creditStudentBalance(student, amountPerStudent);
             StudentBalanceLogRequest logRequest = new StudentBalanceLogRequest();
             logRequest.setStudentBalance(studentBalance);
             logRequest.setExpense(expence);
-            logRequest.setAmount(amount);
+            logRequest.setAmount(amountPerStudent);
             studentBalanceLogService.addCreditBalanceLog(logRequest);
         }
     }

@@ -2,9 +2,10 @@ package com.example.demo.service.moderator;
 
 import com.example.demo.domain.contact.ContactResponse;
 import com.example.demo.domain.expence.ExpenseRequest;
+import com.example.demo.domain.expence.NewExpenseRequest;
 import com.example.demo.domain.student.StudentInfoResponse;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
+
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -52,12 +53,15 @@ public class ModeratorController {
     @PostMapping("/new-expense")
     @Operation(summary = "Add new expense")
     public void addNewExpense(@RequestBody ExpenseRequest request) {
+
         moderatorService.addNewExpense(request);
     }
+
 
     @GetMapping("/user-contact-info")
     @Operation(summary = "Get contact info by user id")
     public ContactResponse getContactInfoByUserId(@RequestParam Integer userId) {
+
         return moderatorService.getContactInfoByUserId(userId);
     }
 
