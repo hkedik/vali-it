@@ -131,13 +131,28 @@ public class StudentService {
         userInGroupService.deactivateParentGroupConnection(parentId);
     }
 
-//    public List<StudentInfoResponse> findStudentList(List<UserStudent> userStudents) {
-//        List<StudentInfoResponse> responses = new ArrayList<>();
-//        for (UserStudent userStudent : userStudents) {
-//            Optional<Student> student = studentRepository.findById(userStudent.getStudent().getId());
-//            validationService.isValidStudent(student, userStudent.getStudent().getId());
-//            responses.add(studentMapper.studentToStudentInfoResponse(student.get()));
-//        }
-//        return responses;
-//    }
+    public void addStudentsToGroup(List<StudentInfoResponse> request) {
+        for (StudentInfoResponse student : request) {
+            if (student.getSelected().equals(true)) {
+                Student foundStudent = studentRepository.getById(student.getStudentId());
+                foundStudent.setActive(true);
+                studentRepository.save(foundStudent);
+                Integer parentId = userStudentService.getParentId(student.getStudentId());
+                userInGroupService.activateParentGroupConnection(parentId);
+            }
+        }
+    }
+
+    public void removeStudentsFromGroup(List<StudentInfoResponse> request) {
+        for (StudentInfoResponse student : request) {
+            if (student.getSelected().equals(true)) {
+                Student foundStudent = studentRepository.getById(student.getStudentId());
+                foundStudent.setActive(false);
+                studentRepository.save(foundStudent);
+                Integer parentId = userStudentService.getParentId(student.getStudentId());
+                userInGroupService.deactivateParentGroupConnection(parentId);
+            }
+        }
+    }
+
 }

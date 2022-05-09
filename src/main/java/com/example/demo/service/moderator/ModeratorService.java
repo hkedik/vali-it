@@ -64,4 +64,12 @@ public class ModeratorService {
     public void removeStudentFromGroup(Integer id) {
         studentService.removeStudentFromGroup(id);
     }
+
+    public void addStudentsToGroup(List<StudentInfoResponse> request) {
+        studentService.addStudentsToGroup(request);
+    }
+
+    public void removeStudentsFromGroup(List<StudentInfoResponse> request) {
+        studentService.removeStudentsFromGroup(request);
+    }
 }

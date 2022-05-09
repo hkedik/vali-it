@@ -1,6 +1,8 @@
 package com.example.demo.service;
 
 
+import com.example.demo.domain.expence.ExpenceService;
+import com.example.demo.domain.expence.ExpenseResponse;
 import com.example.demo.domain.group_info.GroupInfoRequest;
 import com.example.demo.domain.group_info.GroupInfoResponse;
 import com.example.demo.domain.group_info.GroupInfoService;
@@ -22,6 +24,9 @@ public class GroupExpenseService {
     @Resource
     private GroupInfoService groupInfoService;
 
+    @Resource
+    private ExpenceService expenceService;
+
 
     public LoginResponse addNewUser(NewUserInfoRequest request) {
        return userService.addNewUser(request);
@@ -37,5 +42,9 @@ public class GroupExpenseService {
 
     public GroupInfoResponse findGroupByGroupId(Integer groupId, Integer userId) {
         return groupInfoService.getGroupByGroupId(groupId, userId);
+    }
+
+    public List<ExpenseResponse> getExpenseLog(Integer groupId) {
+        return expenceService.getExpenseLog(groupId);
     }
 }

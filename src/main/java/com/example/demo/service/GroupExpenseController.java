@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 
+import com.example.demo.domain.expence.ExpenseResponse;
 import com.example.demo.domain.group_info.GroupInfoRequest;
 import com.example.demo.domain.group_info.GroupInfoResponse;
 import com.example.demo.domain.student.StudentInfoRequest;
@@ -23,13 +24,13 @@ public class GroupExpenseController {
     @PostMapping("/new-user")
     @Operation(summary = "Add new user")
     public LoginResponse addNewUser(@RequestBody NewUserInfoRequest request) {
-       return groupExpenseService.addNewUser(request);
+        return groupExpenseService.addNewUser(request);
     }
 
 
     @PostMapping("/new-group")
     @Operation(summary = "Add new group")
-    public Integer addGroup(@RequestBody GroupInfoRequest request)  {
+    public Integer addGroup(@RequestBody GroupInfoRequest request) {
         return groupExpenseService.addNewGroup(request);
     }
 
@@ -45,6 +46,10 @@ public class GroupExpenseController {
         return groupExpenseService.findGroupByGroupId(groupId, userId);
     }
 
-
+    @GetMapping("/exprnses-by-group-id")
+    @Operation(summary = "Find all expenses")
+    public List<ExpenseResponse> getExpenseLog(Integer groupId) {
+        return groupExpenseService.getExpenseLog(groupId);
+    }
 }
 

@@ -38,6 +38,18 @@ public class ModeratorController {
         moderatorService.addStudentToGroup(id);
     }
 
+    @PostMapping("/students-activation")
+    @Operation(summary = "Add students to group")
+    public void addStudentsToGroup(@RequestBody List<StudentInfoResponse> request) {
+        moderatorService.addStudentsToGroup(request);
+    }
+
+    @PostMapping("/students-deactivation")
+    @Operation(summary = "Remove students from group")
+    public void removeStudentsFromGroup(@RequestBody List<StudentInfoResponse> request) {
+        moderatorService.removeStudentsFromGroup(request);
+    }
+
     @GetMapping("/student-deactivation")
     @Operation(summary = "Remove student from group")
     public void removeStudentFromGroup(@RequestParam Integer id) {
@@ -53,7 +65,6 @@ public class ModeratorController {
     @PostMapping("/new-expense")
     @Operation(summary = "Add new expense")
     public void addNewExpense(@RequestBody ExpenseRequest request) {
-
         moderatorService.addNewExpense(request);
     }
 
