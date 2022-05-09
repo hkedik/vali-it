@@ -1,5 +1,6 @@
 package com.example.demo.service.moderator;
 
+import com.example.demo.domain.contact.ContactRequest;
 import com.example.demo.domain.contact.ContactResponse;
 import com.example.demo.domain.contact.ContactService;
 import com.example.demo.domain.expence.ExpenseRequest;
@@ -71,5 +72,9 @@ public class ModeratorService {
 
     public void removeStudentsFromGroup(List<StudentInfoResponse> request) {
         studentService.removeStudentsFromGroup(request);
+    }
+
+    public void updateContactInfo(ContactRequest request) {
+        contactService.updateContactInfo(request);
     }
 }

@@ -6,9 +6,9 @@ import java.io.Serializable;
 
 @Data
 public class ContactResponse implements Serializable {
-    private final String firstName;
-    private final String lastName;
-    private final String email;
-    private final String tel;
-    private final String accountNumber;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private String tel;
+    private String accountNumber;
 }

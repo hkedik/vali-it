@@ -55,25 +55,14 @@ public class ContactService {
         validationService.isValidContact(contact);
         return contactMapper.contactToContactResponse(contact.get());
 
-
-//        Optional<UserStudent> userStudent = userStudentRepository.findByStudentId(studentId);
-//        validationService.isValidUserStudentRelationship(userStudent, studentId);
-//        UserStudent userStudent1 = userStudent.get();
-//        Optional<User> user = userRepository.findById(userStudent1.getId());
-//        validationService.isValidUser(userStudent1.getUser().getId(), user);
-//        Optional<Contact> contact = contactRepository.findById(user.get().getContact().getId());
-//        validationService.isValidContact(contact);
-//        return contactMapper.contactToContactResponse(contact.get());
     }
 
-    public void updateParentContactInfo(ContactRequest request) {
-        User user = userRepository.getById(request.getUserId());
-        Optional<Contact> contact = contactRepository.findById(user.getContact().getId());
-        validationService.isValidContact(contact);
-        Contact updatedContact = contact.get();
-        contactMapper.updateContactFromContactRequest(request, updatedContact);
 
-        contactRepository.save(updatedContact);
 
+    public void updateContactInfo(ContactRequest request) {
+        User user = userRepository.getById(request.getId());
+        Contact contact = contactRepository.getById(user.getContact().getId());
+        contactMapper.updateContactFromContactRequest(request, contact);
+        contactRepository.save(contact);
     }
 }

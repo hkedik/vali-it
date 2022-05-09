@@ -49,12 +49,6 @@ public class ParentController {
         return parentService.findGroupByName(groupName);
     }
 
-    @PutMapping("/contact-update")
-    @Operation(summary = "Update parent contact info")
-    public void updateParentContactInfo(@RequestBody ContactRequest request) {
-        parentService.updateParentContactInfo(request);
-    }
-
     @GetMapping("/student-by-user-id")
     @Operation(summary = "Find all parent students")
     public List<StudentInfoResponse> findStudentsByUserId(@RequestParam Integer userId) {

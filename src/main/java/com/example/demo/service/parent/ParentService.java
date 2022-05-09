@@ -62,10 +62,6 @@ public class ParentService {
             return groupInfoService.findGroupByName(groupName);
     }
 
-    public void updateParentContactInfo(ContactRequest request) {
-        contactService.updateParentContactInfo(request);
-    }
-
     public List<StudentInfoResponse> findStudentsByUserId(Integer userId) {
         return userStudentService.findStudentsByUserId(userId);
     }

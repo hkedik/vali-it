@@ -1,8 +1,8 @@
 package com.example.demo.service.moderator;
 
+import com.example.demo.domain.contact.ContactRequest;
 import com.example.demo.domain.contact.ContactResponse;
 import com.example.demo.domain.expence.ExpenseRequest;
-import com.example.demo.domain.expence.NewExpenseRequest;
 import com.example.demo.domain.student.StudentInfoResponse;
 import io.swagger.v3.oas.annotations.Operation;
 
@@ -80,5 +80,11 @@ public class ModeratorController {
     @Operation(summary = "Find user contact by student id")
     public ContactResponse getContactInfoByStudentId(@RequestParam Integer studentId) {
         return moderatorService.getContactInfoByStudentId(studentId);
+    }
+
+    @PutMapping("/update-contact-info")
+    @Operation(summary = "Update user contact info")
+    public void updateContactInfo(@RequestBody ContactRequest request) {
+        moderatorService.updateContactInfo(request);
     }
 }
