@@ -9,5 +9,6 @@ public interface GroupInfoRepository extends JpaRepository<GroupInfo, Integer> {
     @Query("select g from GroupInfo g where upper(g.groupName) = upper(?1)")
     Optional<GroupInfo> findByGroupName(String groupName);
 
-
+    @Override
+    Optional<GroupInfo> findById(Integer integer);
 }

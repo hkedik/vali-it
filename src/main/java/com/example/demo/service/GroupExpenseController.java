@@ -39,6 +39,12 @@ public class GroupExpenseController {
         return groupExpenseService.findGroupByUserId(userId);
     }
 
+    @GetMapping("/group-by-group-id")
+    @Operation(summary = "Find group by group id")
+    public GroupInfoResponse findGroupByGroupId(Integer groupId, Integer userId) {
+        return groupExpenseService.findGroupByGroupId(groupId, userId);
+    }
+
 
 }
 

@@ -62,4 +62,9 @@ public class UserInGroupService {
         parentInGroup.setIsModerator(false);
         userInGroupRepository.save(parentInGroup);
     }
+
+    public Boolean findModeratorControl(Integer groupId, Integer userId) {
+        UserInGroup byIdAndUserId = userInGroupRepository.findByGroupInfoIdAndUserId(groupId, userId);
+        return byIdAndUserId.getIsModerator();
+    }
 }

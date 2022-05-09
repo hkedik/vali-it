@@ -10,6 +10,6 @@ public class GroupInfoResponse {
     private String groupName;
     private String description;
     @Nullable
-    private boolean isModerator;
+    private Boolean isModerator;
 
 }

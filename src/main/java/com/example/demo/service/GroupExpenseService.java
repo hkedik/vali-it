@@ -34,4 +34,8 @@ public class GroupExpenseService {
     public List<GroupInfoResponse> findGroupByUserId(Integer userId) {
         return groupInfoService.findGroupByUserId(userId);
     }
+
+    public GroupInfoResponse findGroupByGroupId(Integer groupId, Integer userId) {
+        return groupInfoService.getGroupByGroupId(groupId, userId);
+    }
 }

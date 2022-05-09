@@ -69,9 +69,23 @@ public class GroupInfoService {
             response.setGroupId(group.getId());
             response.setGroupName(group.getGroupName());
             response.setDescription(group.getDescription());
-            response.setModerator(userInGroup.getIsModerator());
+            response.setIsModerator(userInGroup.getIsModerator());
             responses.add(response);
         }
         return responses;
+    }
+
+    public GroupInfoResponse getGroupByGroupId(Integer groupId, Integer userId) {
+        Optional<GroupInfo> groupInfoResponse = groupInfoRepository.findById(groupId);
+        validationService.enteredGroupExistsByGroupId(groupInfoResponse, groupId);
+        GroupInfo groupInfo = groupInfoResponse.get();
+        GroupInfoResponse response = new GroupInfoResponse();
+        response.setGroupId(groupInfo.getId());
+        response.setGroupName(groupInfo.getGroupName());
+        response.setDescription(groupInfo.getDescription());
+        Boolean moderatorControl = userInGroupService.findModeratorControl(groupId, userId);
+        response.setIsModerator(moderatorControl);
+        return response;
+
     }
 }

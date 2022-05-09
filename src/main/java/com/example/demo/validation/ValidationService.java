@@ -12,7 +12,6 @@ import com.example.demo.infrastructure.exception.BusinessException;
 import com.example.demo.infrastructure.exception.DataNotFoundException;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.Optional;
 
 @Service
@@ -74,6 +73,12 @@ public class ValidationService {
     public void enteredGroupExists(Optional<GroupInfo> byGroupName, String groupName) {
         if (byGroupName.isEmpty()) {
             throw new DataNotFoundException("This group does not exist", "Group with a name " + groupName + " does not exist.");
+        }
+    }
+
+    public void enteredGroupExistsByGroupId(Optional<GroupInfo> groupInfoResponse, Integer groupId) {
+        if (groupInfoResponse.isEmpty()) {
+            throw new DataNotFoundException("This group does not exist", "Group with a ID " + groupId + " does not exist.");
         }
     }
 
