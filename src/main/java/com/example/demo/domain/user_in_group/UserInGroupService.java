@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserInGroupService {
@@ -54,6 +55,8 @@ public class UserInGroupService {
     }
 
     public void addNewParentGroupConnection(StudentInfoRequest request) {
+        Optional<UserInGroup> connectionControl = userInGroupRepository.getByUserId(request.getParentUserId());
+        validationService.isAlreadyConnected(connectionControl);
         UserInGroup parentInGroup = new UserInGroup();
         parentInGroup.setGroupInfoId(request.getGroupInfoId());
         parentInGroup.setUserId(request.getParentUserId());

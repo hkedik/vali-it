@@ -101,6 +101,12 @@ public class ValidationService {
         }
     }
 
+    public void isAlreadyConnected(Optional<UserInGroup> connectionControl) {
+        if (connectionControl.isPresent()) {
+            throw new BusinessException("Olete juba gruppiga seotud", "OK");
+        }
+    }
+
 
 //    public void accountExists(String accountNumber, Optional<Account> account) {
 //        if (account.isEmpty()) {

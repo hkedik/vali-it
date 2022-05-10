@@ -36,9 +36,6 @@ public class ParentService {
     private GroupInfoService groupInfoService;
 
     @Resource
-    private ContactService contactService;
-
-    @Resource
     private UserStudentService userStudentService;
 
     @Resource
