@@ -10,9 +10,9 @@ import java.util.List;
 @Data
 public class ExpenseRequest implements Serializable {
 
-    private final Integer groupId;
-    private final String name;
-    private final String description;
-    private final BigDecimal amount;
-    private final List<StudentInfoResponse> students;
+    private Integer groupId;
+    private String name;
+    private String description;
+    private BigDecimal amount;
+    private List<StudentInfoResponse> students;
 }

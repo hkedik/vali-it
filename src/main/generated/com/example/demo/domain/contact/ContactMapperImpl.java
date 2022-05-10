@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-05-09T11:30:41+0300",
+    date = "2022-05-10T15:24:59+0300",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 17.0.3 (Amazon.com Inc.)"
 )
 @Component
@@ -34,19 +34,13 @@ public class ContactMapperImpl implements ContactMapper {
             return null;
         }
 
-        String firstName = null;
-        String lastName = null;
-        String email = null;
-        String tel = null;
-        String accountNumber = null;
+        ContactResponse contactResponse = new ContactResponse();
 
-        firstName = contact.getFirstName();
-        lastName = contact.getLastName();
-        email = contact.getEmail();
-        tel = contact.getTel();
-        accountNumber = contact.getAccountNumber();
-
-        ContactResponse contactResponse = new ContactResponse( firstName, lastName, email, tel, accountNumber );
+        contactResponse.setFirstName( contact.getFirstName() );
+        contactResponse.setLastName( contact.getLastName() );
+        contactResponse.setEmail( contact.getEmail() );
+        contactResponse.setTel( contact.getTel() );
+        contactResponse.setAccountNumber( contact.getAccountNumber() );
 
         return contactResponse;
     }
@@ -78,6 +72,22 @@ public class ContactMapperImpl implements ContactMapper {
     public void updateContactFromContactRequest(ContactRequest contactRequest, Contact contact) {
         if ( contactRequest == null ) {
             return;
+        }
+
+        if ( contactRequest.getFirstName() != null ) {
+            contact.setFirstName( contactRequest.getFirstName() );
+        }
+        if ( contactRequest.getLastName() != null ) {
+            contact.setLastName( contactRequest.getLastName() );
+        }
+        if ( contactRequest.getEmail() != null ) {
+            contact.setEmail( contactRequest.getEmail() );
+        }
+        if ( contactRequest.getTel() != null ) {
+            contact.setTel( contactRequest.getTel() );
+        }
+        if ( contactRequest.getAccountNumber() != null ) {
+            contact.setAccountNumber( contactRequest.getAccountNumber() );
         }
     }
 }
