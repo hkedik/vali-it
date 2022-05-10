@@ -15,7 +15,9 @@ public interface UserInGroupRepository extends JpaRepository<UserInGroup, Intege
     @Query("select u from UserInGroup u where u.groupInfoId = ?1 and u.userId = ?2")
     UserInGroup findByGroupInfoIdAndUserId(Integer groupInfoId, Integer userId);
 
-    Optional<UserInGroup> getByUserId(Integer userId);
+    Optional<UserInGroup> findByUserIdAndGroupInfoId(Integer userId, Integer groupInfoId);
+
+
 
 
 

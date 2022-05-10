@@ -55,7 +55,7 @@ public class UserInGroupService {
     }
 
     public void addNewParentGroupConnection(StudentInfoRequest request) {
-        Optional<UserInGroup> connectionControl = userInGroupRepository.getByUserId(request.getParentUserId());
+        Optional<UserInGroup> connectionControl = userInGroupRepository.findByUserIdAndGroupInfoId(request.getParentUserId(), request.getGroupInfoId());
         if (connectionControl.isEmpty()) {
             UserInGroup parentInGroup = new UserInGroup();
             parentInGroup.setGroupInfoId(request.getGroupInfoId());
