@@ -32,7 +32,7 @@ public class Student {
     private String lastName;
 
     @Column(name = "date_of_birth", nullable = false)
-    private LocalDate dateOfBirth;
+    private String dateOfBirth;
 
     @Column(name = "active", nullable = false)
     private Boolean active = false;
