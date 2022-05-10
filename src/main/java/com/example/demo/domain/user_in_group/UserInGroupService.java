@@ -56,14 +56,15 @@ public class UserInGroupService {
 
     public void addNewParentGroupConnection(StudentInfoRequest request) {
         Optional<UserInGroup> connectionControl = userInGroupRepository.getByUserId(request.getParentUserId());
-        validationService.isAlreadyConnected(connectionControl);
-        UserInGroup parentInGroup = new UserInGroup();
-        parentInGroup.setGroupInfoId(request.getGroupInfoId());
-        parentInGroup.setUserId(request.getParentUserId());
-        parentInGroup.setDateActivated(LocalDate.now());
-        parentInGroup.setIsActive(false);
-        parentInGroup.setIsModerator(false);
-        userInGroupRepository.save(parentInGroup);
+        if (connectionControl.isEmpty()) {
+            UserInGroup parentInGroup = new UserInGroup();
+            parentInGroup.setGroupInfoId(request.getGroupInfoId());
+            parentInGroup.setUserId(request.getParentUserId());
+            parentInGroup.setDateActivated(LocalDate.now());
+            parentInGroup.setIsActive(false);
+            parentInGroup.setIsModerator(false);
+            userInGroupRepository.save(parentInGroup);
+        }
     }
 
     public Boolean findModeratorControl(Integer groupId, Integer userId) {
