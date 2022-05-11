@@ -12,6 +12,6 @@ public class ExpenseResponse implements Serializable {
     private String name;
     private String description;
     private BigDecimal amount;
-    private Instant dateAndTime;
+    private String dateAndTime;
 
 }

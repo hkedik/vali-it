@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -97,19 +98,11 @@ public class StudentService {
 
     public void changeStudentBalance(ExpenseRequest request, Expence expence) {
         List<StudentInfoResponse> students = request.getStudents();
-        double numberOfStudents = students.size();
-
-//        double counter  = 0;
-//        List<StudentInfoResponse> selectedStudents = new ArrayList<>();
-//        for (StudentInfoResponse student : students) {
-//            if(student.getSelected()) {
-//                selectedStudents.add(student);
-//                counter++;
-//            }
-//        }
+        Integer numberOfStudents = students.size();
 
         BigDecimal amount = request.getAmount();
-        BigDecimal amountPerStudent = amount.divide(BigDecimal.valueOf(numberOfStudents));
+//        BigDecimal amountPerStudent = amount.divide(BigDecimal.valueOf(numberOfStudents));
+        BigDecimal amountPerStudent = amount.divide(BigDecimal.valueOf(numberOfStudents), 2, RoundingMode.HALF_UP);
 
         for (StudentInfoResponse student : students) {
             StudentBalance studentBalance = studentBalanceService.creditStudentBalance(student, amountPerStudent);
@@ -155,4 +148,9 @@ public class StudentService {
         }
     }
 
+//    public void removeStudentFromGroupByStudentId(Integer studentId) {
+//        Optional<Student> studentControl = studentRepository.findById(studentId);
+//        validationService.isValidStudent(studentControl, studentId);
+//        studentRepository.delete(studentControl.get());
+//    }
 }

@@ -87,4 +87,10 @@ public class ModeratorController {
     public void updateContactInfo(@RequestBody ContactRequest request) {
         moderatorService.updateContactInfo(request);
     }
+
+//    @DeleteMapping("/remove-stugent-from-group")
+//    @Operation(summary = "Remove student from group lists")
+//    public void removeStudentFromGroupByStudentId(@RequestParam Integer studentId) {
+//        moderatorService.removeStudentFromGroupByStudentId(studentId);
+//    }
 }

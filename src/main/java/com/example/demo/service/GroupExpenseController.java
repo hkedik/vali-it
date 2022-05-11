@@ -46,7 +46,7 @@ public class GroupExpenseController {
         return groupExpenseService.findGroupByGroupId(groupId, userId);
     }
 
-    @GetMapping("/exprnses-by-group-id")
+    @GetMapping("/expenses-by-group-id")
     @Operation(summary = "Find all expenses")
     public List<ExpenseResponse> getExpenseLog(Integer groupId) {
         return groupExpenseService.getExpenseLog(groupId);

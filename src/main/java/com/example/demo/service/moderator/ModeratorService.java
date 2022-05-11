@@ -77,4 +77,8 @@ public class ModeratorService {
     public void updateContactInfo(ContactRequest request) {
         contactService.updateContactInfo(request);
     }
+
+//    public void removeStudentFromGroupByStudentId(Integer studentId) {
+//        studentService.removeStudentFromGroupByStudentId(studentId);
+//    }
 }
