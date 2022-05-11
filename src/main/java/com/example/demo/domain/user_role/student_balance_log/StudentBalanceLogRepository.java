@@ -1,4 +1,4 @@
-package com.example.demo.domain.student_balance_log;
+package com.example.demo.domain.user_role.student_balance_log;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

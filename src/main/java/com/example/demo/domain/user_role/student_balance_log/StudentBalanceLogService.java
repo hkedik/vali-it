@@ -1,4 +1,4 @@
-package com.example.demo.domain.student_balance_log;
+package com.example.demo.domain.user_role.student_balance_log;
 
 import com.example.demo.domain.student_balance.StudentBalance;
 import org.springframework.stereotype.Service;
@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.math.BigDecimal;
 import java.time.Instant;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +28,7 @@ public class StudentBalanceLogService {
     public void addCreditBalanceLog(StudentBalanceLogRequest logRequest) {
         StudentBalanceLog studentBalanceLog = new StudentBalanceLog();
         studentBalanceLog.setStudentBalance(logRequest.getStudentBalance());
-        studentBalanceLog.setExpence(logRequest.getExpense());
+        studentBalanceLog.setexpense(logRequest.getExpense());
         studentBalanceLog.setDateTime(Instant.now());
         studentBalanceLog.setAmount(logRequest.getAmount());
         studentBalanceLog.setType("o");
@@ -49,8 +48,8 @@ public class StudentBalanceLogService {
                 response.setTransferName("Deposit");
                 response.setDescription("Added funds");
             } else if (response.getType().equals("o")) {
-                response.setTransferName(log.getExpence().getName());
-                response.setDescription(log.getExpence().getDescription());
+                response.setTransferName(log.getexpense().getName());
+                response.setDescription(log.getexpense().getDescription());
             }
             responses.add(response);
         }

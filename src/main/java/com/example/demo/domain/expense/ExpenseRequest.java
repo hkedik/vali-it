@@ -1,4 +1,4 @@
-package com.example.demo.domain.expence;
+package com.example.demo.domain.expense;
 
 import com.example.demo.domain.student.StudentInfoResponse;
 import lombok.Data;

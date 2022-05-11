@@ -1,10 +1,9 @@
 package com.example.demo.service;
 
 
-import com.example.demo.domain.expence.ExpenseResponse;
+import com.example.demo.domain.expense.ExpenseResponse;
 import com.example.demo.domain.group_info.GroupInfoRequest;
 import com.example.demo.domain.group_info.GroupInfoResponse;
-import com.example.demo.domain.student.StudentInfoRequest;
 import com.example.demo.domain.user.NewUserInfoRequest;
 import com.example.demo.service.login.LoginResponse;
 import io.swagger.v3.oas.annotations.Operation;

@@ -1,7 +1,6 @@
 package com.example.demo.domain.group_balance;
 
-import com.example.demo.domain.expence.ExpenseRequest;
-import com.example.demo.domain.expence.NewExpenseRequest;
+import com.example.demo.domain.expense.ExpenseRequest;
 import com.example.demo.domain.group_info.GroupInfo;
 import com.example.demo.validation.ValidationService;
 import org.springframework.stereotype.Service;

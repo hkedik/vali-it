@@ -1,11 +1,8 @@
-package com.example.demo.domain.expence;
+package com.example.demo.domain.expense;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 
 @Data
 public class NewExpenseRequest implements Serializable {

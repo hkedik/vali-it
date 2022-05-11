@@ -17,10 +17,8 @@ import java.util.Optional;
 @Service
 public class ValidationService {
 
-
     public static final String INCORRECT_DETAILS = "Incorrect details";
     public static final String NOT_ALLOWED_LOG_IN_DETAILS = "Not allowed log-in details";
-
 
     public void isLoginOk(Optional<User> user) {
         if (user.isEmpty()) {

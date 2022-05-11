@@ -2,11 +2,10 @@ package com.example.demo.domain.student_balance;
 
 
 import com.example.demo.domain.group_balance.GroupBalance;
-import com.example.demo.domain.group_balance.GroupBalanceRepository;
 import com.example.demo.domain.group_balance.GroupBalanceService;
 import com.example.demo.domain.student.Student;
 import com.example.demo.domain.student.StudentInfoResponse;
-import com.example.demo.domain.student_balance_log.StudentBalanceLogService;
+import com.example.demo.domain.user_role.student_balance_log.StudentBalanceLogService;
 import com.example.demo.validation.ValidationService;
 import org.springframework.stereotype.Service;
 

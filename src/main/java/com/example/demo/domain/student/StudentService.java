@@ -1,13 +1,12 @@
 package com.example.demo.domain.student;
 
-import com.example.demo.domain.expence.Expence;
-import com.example.demo.domain.expence.ExpenseRequest;
-import com.example.demo.domain.expence.NewExpenseRequest;
+import com.example.demo.domain.expense.Expense;
+import com.example.demo.domain.expense.ExpenseRequest;
 import com.example.demo.domain.group_info.GroupInfoService;
 import com.example.demo.domain.student_balance.StudentBalance;
 import com.example.demo.domain.student_balance.StudentBalanceService;
-import com.example.demo.domain.student_balance_log.StudentBalanceLogRequest;
-import com.example.demo.domain.student_balance_log.StudentBalanceLogService;
+import com.example.demo.domain.user_role.student_balance_log.StudentBalanceLogRequest;
+import com.example.demo.domain.user_role.student_balance_log.StudentBalanceLogService;
 import com.example.demo.domain.user.User;
 import com.example.demo.domain.user.UserService;
 import com.example.demo.domain.user_in_group.UserInGroupService;
@@ -95,7 +94,7 @@ public class StudentService {
         userInGroupService.activateParentGroupConnection(parentId);
     }
 
-    public void changeStudentBalance(ExpenseRequest request, Expence expence) {
+    public void changeStudentBalance(ExpenseRequest request, Expense expense) {
         List<StudentInfoResponse> students = request.getStudents();
         double numberOfStudents = students.size();
 
@@ -115,7 +114,7 @@ public class StudentService {
             StudentBalance studentBalance = studentBalanceService.creditStudentBalance(student, amountPerStudent);
             StudentBalanceLogRequest logRequest = new StudentBalanceLogRequest();
             logRequest.setStudentBalance(studentBalance);
-            logRequest.setExpense(expence);
+            logRequest.setExpense(expense);
             logRequest.setAmount(amountPerStudent);
             studentBalanceLogService.addCreditBalanceLog(logRequest);
         }

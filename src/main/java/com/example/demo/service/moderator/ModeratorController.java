@@ -2,7 +2,7 @@ package com.example.demo.service.moderator;
 
 import com.example.demo.domain.contact.ContactRequest;
 import com.example.demo.domain.contact.ContactResponse;
-import com.example.demo.domain.expence.ExpenseRequest;
+import com.example.demo.domain.expense.ExpenseRequest;
 import com.example.demo.domain.student.StudentInfoResponse;
 import io.swagger.v3.oas.annotations.Operation;
 
