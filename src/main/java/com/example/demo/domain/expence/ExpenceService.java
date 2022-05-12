@@ -1,6 +1,7 @@
 package com.example.demo.domain.expence;
 
 
+import com.example.demo.domain.expense_picture.ExpensePictureService;
 import com.example.demo.domain.group_balance.GroupBalanceRepository;
 import com.example.demo.domain.group_balance.GroupBalanceResponse;
 import com.example.demo.domain.group_balance.GroupBalanceService;
@@ -26,6 +27,9 @@ public class ExpenceService {
     @Resource
     private StudentService studentService;
 
+    @Resource
+    private ExpensePictureService expensePictureService;
+
     public void addNewExpense(ExpenseRequest request) {
         Expence expence = new Expence();
         expence.setGroupBalance(groupBalanceService.findGroupBalanceByGroupId(request.getGroupId()));
@@ -34,10 +38,9 @@ public class ExpenceService {
         expence.setAmount(request.getAmount());
         expence.setDateTime(Instant.now());
         expenceRepository.save(expence);
+        expensePictureService.saveReceiptPicture(request, expence);
         groupBalanceService.changeGroupBalance(request);
         studentService.changeStudentBalance(request, expence);
-
-
     }
 
     public List<ExpenseResponse> getExpenseLog(Integer groupId) {
@@ -45,7 +48,7 @@ public class ExpenceService {
         List<ExpenseResponse> response = new ArrayList<>();
         for (Expence expence : expenses) {
             ExpenseResponse responseExpense = new ExpenseResponse();
-            responseExpense.setGroupId(expence.getId());
+            responseExpense.setExpenseId(expence.getId());
             responseExpense.setName(expence.getName());
             responseExpense.setDescription(expence.getDescription());
             responseExpense.setAmount(expence.getAmount());
@@ -53,5 +56,13 @@ public class ExpenceService {
             response.add(responseExpense);
         }
         return response;
+    }
+
+    public Expence getExpenceById(Integer expenseId) {
+        return expenceRepository.getById(expenseId);
+    }
+
+    public Expence findByExpenseName(String expenseName) {
+        return expenceRepository.findByName(expenseName);
     }
 }

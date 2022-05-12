@@ -291,5 +291,7 @@ ALTER TABLE user_student ADD CONSTRAINT user_student_student
             INITIALLY IMMEDIATE
 ;
 
+
+
 -- End of file.
 
