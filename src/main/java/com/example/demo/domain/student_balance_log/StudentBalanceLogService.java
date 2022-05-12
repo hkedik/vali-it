@@ -1,6 +1,7 @@
 package com.example.demo.domain.student_balance_log;
 
 import com.example.demo.domain.student_balance.StudentBalance;
+import com.example.demo.util.DateUtil;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -43,7 +44,8 @@ public class StudentBalanceLogService {
         for (StudentBalanceLog log : logs) {
             StudentBalanceLogResponse response = new StudentBalanceLogResponse();
             response.setAmount(log.getAmount());
-            response.setDateTime(log.getDateTime());
+//          response.setDateTime(log.getDateTime());
+            response.setDateTime(DateUtil.getFormattedDate(log.getDateTime()));
             response.setType(log.getType());
             if (response.getType().equals("i")) {
                 response.setTransferName("Deposit");

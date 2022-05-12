@@ -15,5 +15,5 @@ public class StudentBalanceLogResponse {
     private String description;
     private BigDecimal amount;
     private String type;
-    private Instant dateTime;
+    private String dateTime;
 }
