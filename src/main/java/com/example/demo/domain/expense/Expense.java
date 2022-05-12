@@ -1,4 +1,4 @@
-package com.example.demo.domain.expence;
+package com.example.demo.domain.expense;
 
 import com.example.demo.domain.group_balance.GroupBalance;
 import lombok.Data;
@@ -14,7 +14,7 @@ import java.time.Instant;
 @Getter
 @Setter
 @Table(name = "expence")
-public class Expence {
+public class Expense {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)

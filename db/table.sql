@@ -13,8 +13,8 @@ CREATE TABLE contact (
                          CONSTRAINT contact_pk PRIMARY KEY (id)
 );
 
--- Table: expence
-CREATE TABLE expence (
+-- Table: expense
+CREATE TABLE expense (
                          id serial  NOT NULL,
                          group_balance_id int  NOT NULL,
                          name varchar(255)  NOT NULL,
@@ -147,8 +147,8 @@ CREATE TABLE user_student (
 );
 
 -- foreign keys
--- Reference: expence_group_balance (table: expence)
-ALTER TABLE expence ADD CONSTRAINT expence_group_balance
+-- Reference: expence_group_balance (table: expense)
+ALTER TABLE expense ADD CONSTRAINT expence_group_balance
     FOREIGN KEY (group_balance_id)
         REFERENCES group_balance (id)
         NOT DEFERRABLE
@@ -158,7 +158,7 @@ ALTER TABLE expence ADD CONSTRAINT expence_group_balance
 -- Reference: expence_picture_expence (table: expence_picture)
 ALTER TABLE expence_picture ADD CONSTRAINT expence_picture_expence
     FOREIGN KEY (expence_id)
-        REFERENCES expence (id)
+        REFERENCES expense (id)
         NOT DEFERRABLE
             INITIALLY IMMEDIATE
 ;
@@ -190,7 +190,7 @@ ALTER TABLE student_balance ADD CONSTRAINT student_balance_group_balance
 -- Reference: student_balance_log_expence (table: student_balance_log)
 ALTER TABLE student_balance_log ADD CONSTRAINT student_balance_log_expence
     FOREIGN KEY (expence_id)
-        REFERENCES expence (id)
+        REFERENCES expense (id)
         NOT DEFERRABLE
             INITIALLY IMMEDIATE
 ;

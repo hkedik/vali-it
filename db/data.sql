@@ -57,7 +57,7 @@ VALUES (DEFAULT, 1, 1, 25.00);
 INSERT INTO public.student_balance (id, group_balance_id, student_id, balance)
 VALUES (DEFAULT, 1, 2, 475.00);
 
-INSERT INTO public.expence (id, group_balance_id, name, description, amount, date_time)
+INSERT INTO public.expense (id, group_balance_id, name, description, amount, date_time)
 VALUES (DEFAULT, 1, 'Klassiohtu', 'olle peale', 500, '2022-05-06 10:31:04.000000');
 
 INSERT INTO public.student_balance_log (id, expence_id, student_balance_id, date_time, amount, type)

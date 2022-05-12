@@ -1,6 +1,6 @@
 package com.example.demo.domain.student_balance_log;
 
-import com.example.demo.domain.expence.Expence;
+import com.example.demo.domain.expense.Expense;
 import com.example.demo.domain.student_balance.StudentBalance;
 import lombok.Data;
 
@@ -19,7 +19,7 @@ public class StudentBalanceLog {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "expence_id")
-    private Expence expence;
+    private Expense expense;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "student_balance_id", nullable = false)
@@ -42,12 +42,12 @@ public class StudentBalanceLog {
         this.id = id;
     }
 
-    public Expence getExpence() {
-        return expence;
+    public Expense getExpense() {
+        return expense;
     }
 
-    public void setExpence(Expence expence) {
-        this.expence = expence;
+    public void setExpense(Expense expense) {
+        this.expense = expense;
     }
 
     public StudentBalance getStudentBalance() {
