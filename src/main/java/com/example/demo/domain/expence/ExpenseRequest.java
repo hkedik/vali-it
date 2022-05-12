@@ -11,6 +11,7 @@ import java.util.List;
 public class ExpenseRequest implements Serializable {
 
     private Integer groupId;
+    private Integer pictureId;
     private String name;
     private String description;
     private BigDecimal amount;
