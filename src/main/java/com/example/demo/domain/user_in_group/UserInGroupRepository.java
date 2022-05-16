@@ -7,6 +7,10 @@ import java.util.List;
 import java.util.Optional;
 
 public interface UserInGroupRepository extends JpaRepository<UserInGroup, Integer> {
+
+    UserInGroup getByUserIdAndGroupInfoId(Integer userId, Integer groupInfoId);
+
+
     List<UserInGroup> findByUserId(Integer userId);
 
     @Query("select u from UserInGroup u where u.userId = ?1")

@@ -93,7 +93,8 @@ public class StudentService {
         registeredStudent.setActive(true);
         studentRepository.save(registeredStudent);
         Integer parentId = userStudentService.getParentId(id);
-        userInGroupService.activateParentGroupConnection(parentId);
+        Integer groupId = registeredStudent.getGroupInfo().getId();
+        userInGroupService.activateParentGroupConnection(parentId, groupId);
     }
 
     public void changeStudentBalance(ExpenseRequest request, Expence expence) {
@@ -121,29 +122,32 @@ public class StudentService {
         registeredStudent.setActive(false);
         studentRepository.save(registeredStudent);
         Integer parentId = userStudentService.getParentId(id);
-        userInGroupService.deactivateParentGroupConnection(parentId);
+        Integer groupId = registeredStudent.getGroupInfo().getId();
+        userInGroupService.deactivateParentGroupConnection(parentId,groupId);
     }
 
-    public void addStudentsToGroup(List<StudentInfoResponse> request) {
-        for (StudentInfoResponse student : request) {
+    public void addStudentsToGroup(List<StudentRegistrationRequest> request) {
+        for (StudentRegistrationRequest student : request) {
             if (student.getSelected().equals(true)) {
                 Student foundStudent = studentRepository.getById(student.getStudentId());
                 foundStudent.setActive(true);
                 studentRepository.save(foundStudent);
                 Integer parentId = userStudentService.getParentId(student.getStudentId());
-                userInGroupService.activateParentGroupConnection(parentId);
+                Integer groupId = foundStudent.getGroupInfo().getId();
+                userInGroupService.activateParentGroupConnection(parentId, groupId);
             }
         }
     }
 
-    public void removeStudentsFromGroup(List<StudentInfoResponse> request) {
-        for (StudentInfoResponse student : request) {
-            if (student.getSelected().equals(true)) {
+    public void removeStudentsFromGroup(List<StudentRegistrationRequest> request) {
+        for (StudentRegistrationRequest student : request) {
+          if (student.getSelected().equals(true)) {
                 Student foundStudent = studentRepository.getById(student.getStudentId());
                 foundStudent.setActive(false);
                 studentRepository.save(foundStudent);
                 Integer parentId = userStudentService.getParentId(student.getStudentId());
-                userInGroupService.deactivateParentGroupConnection(parentId);
+              Integer groupId = foundStudent.getGroupInfo().getId();
+              userInGroupService.deactivateParentGroupConnection(parentId, groupId);
             }
         }
     }

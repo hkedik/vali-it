@@ -34,9 +34,9 @@ public class UserInGroupService {
         return userRoleService.userToModerator(userId);
     }
 
-    public void deactivateParentGroupConnection(Integer parentId) {
+    public void deactivateParentGroupConnection(Integer parentId, Integer groupId) {
 //    TODO: kahe lapsega vanema validatsioon
-        UserInGroup connection = userInGroupRepository.findUserConnectionByUserId(parentId);
+        UserInGroup connection = userInGroupRepository.getByUserIdAndGroupInfoId(parentId, groupId);
         connection.setIsActive(false);
         connection.setDateActivated(LocalDate.now());
         userInGroupRepository.save(connection);
@@ -47,8 +47,8 @@ public class UserInGroupService {
         return userInGroups;
     }
 
-    public void activateParentGroupConnection(Integer parentId) {
-        UserInGroup connection = userInGroupRepository.findUserConnectionByUserId(parentId);
+    public void activateParentGroupConnection(Integer parentId, Integer groupId) {
+        UserInGroup connection = userInGroupRepository.getByUserIdAndGroupInfoId(parentId, groupId);
         connection.setIsActive(true);
         connection.setDateActivated(LocalDate.now());
         userInGroupRepository.save(connection);

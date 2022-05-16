@@ -7,6 +7,7 @@ import com.example.demo.domain.expence.ExpenseRequest;
 import com.example.demo.domain.expence.ExpenceService;
 import com.example.demo.domain.expence.NewExpenseRequest;
 import com.example.demo.domain.student.StudentInfoResponse;
+import com.example.demo.domain.student.StudentRegistrationRequest;
 import com.example.demo.domain.student.StudentService;
 import com.example.demo.domain.student_balance.StudentBalanceService;
 import org.springframework.stereotype.Service;
@@ -66,11 +67,11 @@ public class ModeratorService {
         studentService.removeStudentFromGroup(id);
     }
 
-    public void addStudentsToGroup(List<StudentInfoResponse> request) {
+    public void addStudentsToGroup(List<StudentRegistrationRequest> request) {
         studentService.addStudentsToGroup(request);
     }
 
-    public void removeStudentsFromGroup(List<StudentInfoResponse> request) {
+    public void removeStudentsFromGroup(List<StudentRegistrationRequest> request) {
         studentService.removeStudentsFromGroup(request);
     }
 

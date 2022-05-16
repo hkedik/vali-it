@@ -4,6 +4,7 @@ import com.example.demo.domain.contact.ContactRequest;
 import com.example.demo.domain.contact.ContactResponse;
 import com.example.demo.domain.expence.ExpenseRequest;
 import com.example.demo.domain.student.StudentInfoResponse;
+import com.example.demo.domain.student.StudentRegistrationRequest;
 import io.swagger.v3.oas.annotations.Operation;
 
 import org.springframework.web.bind.annotation.*;
@@ -40,13 +41,13 @@ public class ModeratorController {
 
     @PostMapping("/students-activation")
     @Operation(summary = "Add students to group")
-    public void addStudentsToGroup(@RequestBody List<StudentInfoResponse> request) {
+    public void addStudentsToGroup(@RequestBody List<StudentRegistrationRequest> request) {
         moderatorService.addStudentsToGroup(request);
     }
 
     @PostMapping("/students-deactivation")
     @Operation(summary = "Remove students from group")
-    public void removeStudentsFromGroup(@RequestBody List<StudentInfoResponse> request) {
+    public void removeStudentsFromGroup(@RequestBody List<StudentRegistrationRequest> request) {
         moderatorService.removeStudentsFromGroup(request);
     }
 
